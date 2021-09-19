@@ -1,0 +1,29 @@
+---
+title: "sporgeskema"
+author: "Julie Svinth Nielsen"
+date: "19/9/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+```{r}
+library(tidyverse)
+library(readr)
+```
+
+Load in data
+```{r}
+
+spg <- read_delim("complete.csv", ";", 
+    escape_double = FALSE, trim_ws = TRUE)
+View(spg)
+```
+
+```{r}
+spg$ID <- seq.int(nrow(spg))
+```
+
