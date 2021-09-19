@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(tidyverse)
 library(readr)
+library(dplyr)
 ```
 
 Load in data
@@ -22,8 +23,31 @@ spg <- read_delim("complete.csv", ";",
     escape_double = FALSE, trim_ws = TRUE)
 View(spg)
 ```
-
+Create ID
 ```{r}
 spg$ID <- seq.int(nrow(spg))
+
+# Make all answers numeric perhaps? Give them the number from 1 to 5
+spg[spg == "Enig"] <- "5"
+spg[spg == "Delvis enig"] <- "4"
+spg[spg == "Hverken eller"] <- "3"
+spg[spg == "Delvis uenig"] <- "2"
+spg[spg == "Uenig"] <- "1"
+
+df <- spg
+
+# For some of the columns, it should be reversed. Make these specific columns reversed.
+
+df[,2:18] <- sapply(df[,2:18],as.numeric)
+
+cols = c("intro_3", "intro_5", "oplys_3", "insp_2", "insp_3", "insp_4", "nudge_1", "nudge_2")
+
+df[ ,cols] = 6 - df[ ,cols]
+
+
+# Illustrate the different groups and the answers within this area - intro, oplysning, inspiration, nudging.
+
+
+
 ```
 
