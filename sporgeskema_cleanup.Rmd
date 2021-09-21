@@ -5,11 +5,14 @@ date: "19/9/2021"
 output: html_document
 ---
 
+
+### Pre-processing
+Her hentes dataen ind og bliver renset. 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+
 ```{r}
 library(tidyverse)
 library(readr)
@@ -24,6 +27,7 @@ spg <- read_delim("complete.csv", ";",
     escape_double = FALSE, trim_ws = TRUE)
 
 ```
+
 Create ID
 ```{r}
 spg$ID <- seq.int(nrow(spg))
@@ -54,7 +58,33 @@ df_2$category <- revalue(df_2$category, c("intr" = "introduction", "oply" = "opl
 
 ```
 
-Illustration
+
+### Illustrationer af de forskellgie kategorier
+```{r}
+df_2 %>% 
+  filter(category %in% c("oplysning", "inspiration", "nudging")) %>% 
+  ggplot(aes(category, as.numeric(response), fill = category))+geom_bar( stat = "summary")+ 
+  xlab("De tre kategorier")+ ylab("Gennemsnittet af besvarelserne")
+
+df_2 %>% 
+  filter(category %in% c("oplysning", "inspiration", "nudging")) %>% 
+  mutate(response = as.numeric(response)) %>% 
+  group_by(category) %>% 
+  dplyr::summarise(mean = mean(response, na.rm = TRUE))
+
+```
+
+## Overordnede gennemsnit ved de forskellige udsagn. 
+
+Dette overblik er undersøgt dybere længere nede.
+```{r}
+df_2 %>% 
+  filter(category %in% c("oplysning", "inspiration", "nudging")) %>% 
+  ggplot(aes(factor, as.numeric(response), fill = category))+geom_bar(stat = "summary")
+  
+```
+
+### Intoduktion
 ```{r}
 
 # Illustrate the different groups and the answers within this area - intro, oplysning, inspiration, nudging.
@@ -65,13 +95,15 @@ df_2 %>%
 
 df_2 %>% 
   filter(factor %in% c("intro_2", "intro_3", "intro_4", "intro_5")) %>% 
-  ggplot(aes(factor, as.numeric(response), fill = factor))+geom_bar( stat = "summary")
+  ggplot(aes(factor, as.numeric(response), fill = factor))+geom_bar( stat = "summary")+ 
+  xlab("Introduktionsudsagn")+ ylab("Gennemsnittet af besvarelserne")
 
 
 
 
 ```
 
+## Introduktionsudsagn
 intro_2: Jeg går op i at handle klimavenligt 
 
 intro_3:Jeg prioriterer lavere priser over det klimabevidste valg 
@@ -80,22 +112,108 @@ intro_4:Jeg er villig til at ændre mine indkøbsvaner, så de bliver mere klima
 
 intro_5:Der er så mange hensyn at tage i forhold til indkøb, så jeg prioriterer ikke klimaet  
 
+## Hvad betyder resultaterne?
+
+2. Her indikerer gennemsnittet, at en forholdsvis høj andel af kunderne går op i at handle klimavenligt.
+
+3. Her ligger gennemsnittet omkring hverken eller, hvilket indikerer, at prisen ikke dominerer særlig meget over det klimabevidste valg. 
+
+4. Her indikerer gennemsnittet, at en høj andel af kunderne ville være klar på at ændre sine vaner og gøre indkøbene mere klimabevidste.
+
+5. Her indikerer gennemsnittet, at de fleste kunder ikke oplever, at der er forhold, som afgrænser muligheden for at handle klimabevidst.
+
+## Konklusion
+I de indledende spørgsmål ser vi, at kunderne oplever, at de selv går op i at handle klimavenligt. Dette vidner om, at en større andel af kunderne har løst til at opnå et højere klimevenligt niveau. Dette understøttes også af gennemsnittet på intro_4, hvor en stor del af kunderne gerne vil ændre deres indkøbsvaner, så de bliver mere klimavenlige. Intensionerne er det altså, hvilket er positivt.
+
+
+
+
+### Oplysning
+```{r}
+
+
+df_2 %>% 
+  filter(category %in% c("oplysning")) %>% 
+  ggplot(aes(factor, as.numeric(response), fill = factor))+geom_bar(stat = "summary")+ 
+  xlab("Udsagn omkring oplysning")+ ylab("Gennemsnittet af besvarelserne")
+```
+## Udsagnene omkring oplysning
+1. Jeg føler mig godt oplyst om hvilke varer der er klimavenlige 
+
+2. Jeg opsøger tit information om klimaaftrykket på varernes mærkater 
+
+3. Jeg savner mærkater eller skilte, der fremhæver klimavenlige varer i supermarkedet 
+
+4. Jeg prioriterer at spise sæsonbestemte madvarer (fx frugt og grønt) 
+
+5. Jeg prioriterer at spise danske varer 
+
+## Hvad betyder resultaterne?
+
+1. Lige omkring midten. Dette betyder at folk gennemsnitligt er hverken uenig eller enig med udsagnet om, at de føler sig godt oplyst om hvilke varer, der er klimavenlige.
+2. Her ligger gennemsnittet imellem delvis uenig og hverken eller, hvilket betyder, at kunder ikke bruger så meget energi på at opsøge information om klimaaftrykket på varemærkater.
+3. Her ser vi et gennemsnit, der ligger lidt over delvis enig. Dette indikerer, at kunder i høj grad mangler mærkater eller skilte, der fremhæver varer i supermarkedet.
+4. Her ligger gennemsnittet lige over delvis enig, hvilket indikerer, at kunder i høj grad prioriterer at spise sæsonbestemt.
+5. Her ligger gennemsnittet lige over delvis enig, hvilket indikerer at kunder prioriterer danske varer.
+
+## Konklusion
+Det der sprigner i øjnene her er, at kunderne efterspørger mærkater eller skiltning i supermarkederne, så de kan blive mere oplyste om det klimavenlige valg. Derudover ses der en tendens ved at handle forholdsvis sæsonbestemt og lokalt. 
+
+
+### Inspiration
 ```{r}
 df_2 %>% 
-  filter(category %in% c("oplysning", "inspiration", "nudging")) %>% 
-  ggplot(aes(category, as.numeric(response), fill = category))+geom_bar( stat = "summary")
-
-df_2 %>% 
-  filter(category %in% c("oplysning", "inspiration", "nudging")) %>% 
-  mutate(response = as.numeric(response)) %>% 
-  group_by(category) %>% 
-  dplyr::summarise(mean = mean(response, na.rm = TRUE))
-
+  filter(category %in% c("inspiration")) %>% 
+  ggplot(aes(factor, as.numeric(response), fill = factor))+geom_bar(stat = "summary")+ 
+  xlab("Udsagn omkring inspiration")+ ylab("Gennemsnittet af besvarelserne")
 ```
+## Udsagnene omkring inspiration
+1. Jeg går op i at indrette min kost, så den bliver mere klimavenlig 
+
+2. Jeg synes ikke, at udvalget af klimavenlige produkter er stort nok 
+
+3. Jeg mangler inspiration til mere klimavenlige alternativer og opskrifter 
+
+4. Jeg synes, at det er svært at ændre mine madvaner, så de bliver mere klimavenlige  
+
+## Hvad betyder resultaterne?
+1. Her ligger gennemsnittet mellem hverken eller og delvis enig. Dette indikerer at kunder er forholdsvis enige i at indrette deres kost mere klimavenligt.
+2. Her ligger gennemsnittet mellem hverken eller og delvis enig, hvilket indikerer, at der er en lille overvægt af kunder, som ønsker et større udvalg af klimavenlige produkter.
+3. Her ligger gennemsnittet lige omkring delvis enig, hvilket indikerer, at kunder i forholdsvis høj grad mangler mere inspiration til klimavenlige retter.
+4. Her ligger gennemsnittet imellem hverken eller og delvis enig, hvilket giver en lille overvægt af kunder, der finder det svært at skabe mere klimavenlige madvaner. 
+
+## Konklusion
+Kunderne ønsker gerne mere inspiration til klimavenlige retter. Der er også en lille overvægt af kunder, som forsøger at indrette deres måltider efter mere klimavenlige retningslinjer. 
+
+### Nudging
 ```{r}
+
 df_2 %>% 
-  filter(category %in% c("oplysning", "inspiration", "nudging")) %>% 
-  ggplot(aes(factor, as.numeric(response), fill = category))+geom_bar(stat = "summary")
-  
+  filter(category %in% c("nudging")) %>% 
+  ggplot(aes(factor, as.numeric(response), fill = factor))+geom_bar(stat = "summary")+ 
+  xlab("Udsagn omkring nudging")+ ylab("Gennemsnittet af besvarelserne")
 ```
 
+## Udsagnene omkring nudging
+
+1. Jeg synes, at det er uoverskueligt at finde klimavenlige produkter i supermarkedet 
+
+2. Jeg prioriterer at indkøb skal gå hurtigt, hvilket sommetider gør valget af varer mere tilfældig 
+
+3. Jeg bruger ofte ekstra tid på at finde klimavenlige alternativer 
+
+4. Jeg synes, at klimavenlige varer skal placeres mere tilgængeligt end ikke-klimavenlige varer i supermarkedet 
+
+## Hvad betyder resultaterne?
+
+1. Her indikerer gennemsnittet, at der er en lille overvægt af kunder, der synes, det er uoverskueligt at finde klimavenlgie produkter i supermarkedet.
+
+2. Her ligger gennemsnittet lige omkring hverken eller, hvilket betyder, at hurtige indkøb ikke har så stor betydning for kundernes valg af varer.
+
+3. Her ligger gennemsnitter imellem delvis uenig og hverken eller, hvilket indikerer at kunder formentlig ikke bruger ekstra tid på at finde klimavenlige alternativer.
+
+4. Her ligger gennemsnittet lige omkrign delvig enig, hvilket indikerer at kunder er enige med ideen om, at klimavenlige produkter skal fremhæves mere end ikke-klimavenlige varer. 
+
+## Konklusion
+
+Her ser vi i høj grad, at kunderne støtter op omkring, at klimavenlige varer skal være mere tilgængelige sammenlignet med ikke-klimavenlige varer. Resultaterne viser også, at kunderne ikke bruger ekstra tid på at finde klimavenlige alternativer, så dette skal ikke forventes af dem. Der er ligeledes en lille overvægt at kunder, der finder det svært at navigere i, hvor man finder disse klimavenlige varer. 
