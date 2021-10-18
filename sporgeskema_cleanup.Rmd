@@ -2,7 +2,9 @@
 title: "sporgeskema"
 author: "Julie Svinth Nielsen"
 date: "19/9/2021"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 
@@ -13,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-```{r}
+```{r, warning=FALSE}
 library(tidyverse)
 library(readr)
 library(dplyr)
@@ -21,7 +23,7 @@ library(plyr)
 ```
 
 Load in data
-```{r}
+```{r,warning=FALSE}
 
 spg <- read_delim("complete.csv", ";", 
     escape_double = FALSE, trim_ws = TRUE)
@@ -29,7 +31,7 @@ spg <- read_delim("complete.csv", ";",
 ```
 
 Create ID
-```{r}
+```{r, warning=FALSE}
 spg$ID <- seq.int(nrow(spg))
 
 # Make all answers numeric perhaps? Give them the number from 1 to 5
@@ -59,8 +61,8 @@ df_2$category <- revalue(df_2$category, c("intr" = "introduction", "oply" = "opl
 ```
 
 
-### Illustrationer af de forskellgie kategorier
-```{r}
+### Illustrationer af de forskelligie kategorier
+```{r, warning=FALSE}
 df_2 %>% 
   filter(category %in% c("oplysning", "inspiration", "nudging")) %>% 
   ggplot(aes(category, as.numeric(response), fill = category))+geom_bar( stat = "summary")+ 
@@ -77,7 +79,7 @@ df_2 %>%
 ## Overordnede gennemsnit ved de forskellige udsagn. 
 
 Dette overblik er undersøgt dybere længere nede.
-```{r}
+```{r, warning=FALSE}
 df_2 %>% 
   filter(category %in% c("oplysning", "inspiration", "nudging")) %>% 
   ggplot(aes(factor, as.numeric(response), fill = category))+geom_bar(stat = "summary")
@@ -85,7 +87,7 @@ df_2 %>%
 ```
 
 ### Intoduktion
-```{r}
+```{r, warning=FALSE}
 
 # Illustrate the different groups and the answers within this area - intro, oplysning, inspiration, nudging.
 
@@ -98,7 +100,7 @@ df_2 %>%
   ggplot(aes(factor, as.numeric(response), fill = factor))+geom_bar( stat = "summary")+ 
   xlab("Introduktionsudsagn")+ ylab("Gennemsnittet af besvarelserne")
 
-
+count(spg$intro_1)
 
 
 ```
@@ -123,13 +125,13 @@ intro_5:Der er så mange hensyn at tage i forhold til indkøb, så jeg prioriter
 5. Her indikerer gennemsnittet, at de fleste kunder ikke oplever, at der er forhold, som afgrænser muligheden for at handle klimabevidst.
 
 ## Konklusion
-I de indledende spørgsmål ser vi, at kunderne oplever, at de selv går op i at handle klimavenligt. Dette vidner om, at en større andel af kunderne har løst til at opnå et højere klimevenligt niveau. Dette understøttes også af gennemsnittet på intro_4, hvor en stor del af kunderne gerne vil ændre deres indkøbsvaner, så de bliver mere klimavenlige. Intensionerne er det altså, hvilket er positivt.
+I de indledende spørgsmål ser vi, at kunderne oplever, at de selv går op i at handle klimavenligt. Dette vidner om, at en større andel af kunderne har lyst til at opnå et højere klimevenligt niveau. Dette understøttes også af gennemsnittet på intro_4, hvor en stor del af kunderne gerne vil ændre deres indkøbsvaner, så de bliver mere klimavenlige. Intensionerne er det altså, hvilket er positivt.
 
 
 
 
 ### Oplysning
-```{r}
+```{r, warning=FALSE}
 
 
 df_2 %>% 
@@ -161,7 +163,7 @@ Det der sprigner i øjnene her er, at kunderne efterspørger mærkater eller ski
 
 
 ### Inspiration
-```{r}
+```{r, warning=FALSE}
 df_2 %>% 
   filter(category %in% c("inspiration")) %>% 
   ggplot(aes(factor, as.numeric(response), fill = factor))+geom_bar(stat = "summary")+ 
@@ -186,7 +188,7 @@ df_2 %>%
 Kunderne ønsker gerne mere inspiration til klimavenlige retter. Der er også en lille overvægt af kunder, som forsøger at indrette deres måltider efter mere klimavenlige retningslinjer. 
 
 ### Nudging
-```{r}
+```{r, warning=FALSE}
 
 df_2 %>% 
   filter(category %in% c("nudging")) %>% 
