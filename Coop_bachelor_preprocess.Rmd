@@ -200,3 +200,94 @@ write.csv(x=df_40_ref, file="df_40_ref.csv")
 
 ```
 
+```{r}
+# Creating intervention column 
+df_38_ref$intervention <- "reference"
+df_39_ref$intervention <- "reference"
+df_40_ref$intervention <- "reference"
+df_40$intervention <- "label"
+df_41$intervention <- "label"
+
+```
+
+```{r}
+
+# Create oms for the entire week 
+df_ref_first <- df_38_ref %>% 
+  left_join(df_39_ref, by = "vare")
+
+df_ref_first$oms_new <- df_ref_first$oms.x + df_ref_first$oms.y
+
+df_ref_final <- df_ref_first %>% 
+  left_join(df_40_ref, by = "vare")
+
+df_ref_final$oms_final <- df_ref_final$oms_new + df_ref_final$oms
+
+df_ref_final <- select(df_ref_final, -c(7:17))
+
+df_ref_final[c(4), 5] <- c("onion")
+
+# Making an average of the two weeks to create the reference week
+df_ref_final$oms_ref <- df_ref_final$oms_final/2
+
+df_ref_final$oms_ref <- round(df_ref_final$oms_ref, digits = 0)
+
+
+write.csv(x=df_ref_final, file="df_reference.csv")
+
+df_reference <- read_csv("~/Uni stuff/Bachelor/bachelor/df_reference.csv")
+
+
+#df_label <- df_40 %>% 
+  #left_join(df_41, by = "Vare")
+
+df_label$oms_new <- df_label$oms.x + df_label$oms.y
+
+df_label <- select(df_label, -c(8:13))
+
+df_label[c(4), 5] <- c("onion")
+
+
+
+df_label <- df_label %>% 
+  rename(
+    oms = oms_new
+    )
+
+df_label <- select(df_label, -c(6))
+df_ref_final <- select(df_ref_final, -c(7))
+
+write.csv(x=df_label, file="df_label.csv")
+
+df_ref_final <- df_ref_final %>% 
+  rename(
+    oms = oms_ref
+    )
+
+# On top of eachother
+
+df_ref_label <- bind_rows(df_ref_final, df_label, .id = "uge.x")
+
+
+# Final csv for dataframe containing numbers from reference week and first intervention
+
+write.csv(x=df_ref_label, file="df_ref_label.csv")
+
+
+
+```
+
+## Visualization
+
+```{r}
+
+
+illustration_test <- df_ref_label %>%
+  filter(prod_cat.x %in% c("cale", "spinage", "squash")) %>% 
+  ggplot(aes(prod_cat.x, oms, fill = intervention.x))+geom_bar( stat = "summary")+ 
+  xlab("something")+ ylab("something")
+
+illustration_test
+
+```
+
