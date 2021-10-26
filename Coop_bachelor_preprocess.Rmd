@@ -12,6 +12,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(tidyverse)
 library(readr)
+library(lme4)
+library(lmerTest)
 ```
 
 Load in data and pre-process
@@ -24,8 +26,11 @@ df <- read_delim("Klimaprojekt tal 7.10 - 13.10.csv",
     ";", escape_double = FALSE, trim_ws = TRUE)
 View(df)
 
+nudge  <- read_delim("Kopi af salgstals klimaprojekt 14.10 - 20.10.csv", 
+    ";", escape_double = FALSE, trim_ws = TRUE)
 
-### Der skal fjernes tre nuller fra linje 4
+nudge <- nudge[-c(1, 2, 3, 12), ]
+
 
 ### Der skal laves en kolonne, der inddeler dem i varegrupper
 
@@ -198,6 +203,73 @@ df_40_ref[c(56, 57), 5] <- c("corn")
 write.csv(x=df_40_ref, file="df_40_ref.csv")
 
 
+# Nudge dataframe
+
+nudge$prod_cat<- c("j") 
+
+nudge[c(1, 9), 5] <- c("squash")
+nudge[c(3, 11), 5] <- c("tomato")
+nudge[c(2, 10), 5] <- c("carrots")
+nudge[c(4, 7, 12, 15), 5] <- c("broccoli")
+nudge[c(5, 8, 13, 16), 5] <- c("spinage")
+nudge[c(6, 14), 5] <- c("chickpea")
+nudge$intervention <- "nudge"
+
+
+
+df_reference <- read_csv("df_reference.csv")
+
+df_reference <- df_reference %>% 
+  rename(
+    X3 = X4.x
+    )
+
+write.csv(x=df_reference, file="df_reference.csv")
+
+nudge$vare <- as.numeric(nudge$vare)
+
+# create two df with 41 and 42 - add the two oms
+nudge_41 <- subset(nudge, uge == "Uge 2021-41")
+nudge_42 <- subset(nudge, uge == "Uge 2021-42")
+
+nudge_new <- nudge_41 %>% 
+  left_join(nudge_42, by = "vare")
+
+nudge_new$oms_new <- nudge_new$oms.x + nudge_new$oms.y
+
+nudge_new <- select(nudge_new, -c(4))
+
+# Create new dataframe where products that appear in the nudge df is combined together with the same products from df_reference - only showing the exact same products - below eachother 
+
+
+test <- subset(df_reference, vare== 5700382516469 | vare == 5700383878061 | vare== 5750006326691 | vare== 7340011481782 | vare== 7340011487906 | vare== 7340191112582) 
+
+test <- subset(df_reference, vare== 5700382815340) #not in the reference week data
+test <- subset(df_reference, vare== 7340191112711) #not in the reference week data
+
+test <- select(test, -c(1))
+
+nudge_new <- nudge_new %>% 
+  rename(
+    oms = oms_new
+    )
+
+nudge_new$prod_cat<- c("j") 
+
+nudge_new[c(1), 6] <- c("squash")
+nudge_new[c(3), 6] <- c("tomato")
+nudge_new[c(2), 6] <- c("carrots")
+nudge_new[c(4, 7), 6] <- c("broccoli")
+nudge_new[c(5, 8), 6] <- c("spinage")
+nudge_new[c(6), 6] <- c("chickpea")
+
+
+
+df_ref_nudge <- bind_rows(nudge_new, test, .id = "uge")
+
+
+write.csv(x=df_ref_nudge, file="df_ref_nudge.csv")
+
 ```
 
 ```{r}
@@ -288,6 +360,28 @@ illustration_test <- df_ref_label %>%
   xlab("something")+ ylab("something")
 
 illustration_test
+
+```
+
+```{r}
+
+coop <- read_csv("~/Uni stuff/Bachelor/bachelor/df_ref_label.csv")
+```
+
+Building model
+```{r}
+
+# Making products and intervention into factors
+coop$prod_cat.x <- as.factor(coop$prod_cat.x)
+coop$intervention.x <- as.factor(coop$intervention.x)
+
+m0 <- lm(oms  ~ intervention.x, data = coop, REML = FALSE)
+m1 <- lmer(oms  ~ intervention.x + (1|prod_cat.x), data = coop, REML = FALSE)
+
+summary(m0)
+summary(m1)
+
+plot(m0)
 
 ```
 

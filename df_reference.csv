@@ -1,65 +1,65 @@
-"","uge.x","vare","X4.x","oms.x","prod_cat.x","intervention.x","oms"
-"1","Uge 2021-38","57095370","KILDEV<c6>LD 50CL",29,"water","reference",37
-"2","Uge 2021-38","5700380222096","R<f8>dbeder 1,5 kg.",5,"beats","reference",7
-"3","Uge 2021-38","5700380268926","<d8>KO <c4>M SPIDSK<c5>L",141,"cale","reference",199
-"4","Uge 2021-38","5700380269572","L<f8>g 1 kg 40-60 mm",27,"onion","reference",83
-"5","Uge 2021-38","5700380394816","Kart Lammefjord 1,5",15,"potato","reference",52
-"6","Uge 2021-38","5700380806210","Knoldselleri",7,"celeriac","reference",16
-"7","Uge 2021-38","5700380988244","Hvidk<e5>l 1000-1800 gr",NA,"cale","reference",NA
-"8","Uge 2021-38","5700381206774","<d8>ko <c4>M porrer 1 stk",44,"leek","reference",84
-"9","Uge 2021-38","5700381232315","<d8>KO <c4>M KART SM<c5>",40,"potato","reference",34
-"10","Uge 2021-38","5700381563587","COOP DANSKVAND 2L",39,"water","reference",66
-"11","Uge 2021-38","5700381660255","<c4>ngla <f8>ko gr<f8>nk<e5>l",7,"cale","reference",10
-"12","Uge 2021-38","5700381715467","Br<f8>dC MINERALV 50cL",722,"bread","reference",553
-"13","Uge 2021-38","5700381757511","<c4>ngla <f8>ko Blomk<e5>l",13,"cale","reference",12
-"14","Uge 2021-38","5700381768852","SF HINDB<c6>R 170 g.",28,"berries","reference",68
-"15","Uge 2021-38","5700381779827","Porrer",39,"leek","reference",82
-"16","Uge 2021-38","5700381884897","<d8>KO <c4>NGLAMARK HVEDEMEL DK 2 KG",17,"flour","reference",19
-"17","Uge 2021-38","5700382004812","<d8>ko <c4>M Portobello",6,"mushrooms","reference",12
-"18","Uge 2021-38","5700382039487","P<e6>rer, store 6stk.DK",62,"pear","reference",109
-"19","Uge 2021-38","5700382094080","<c4>ngla <f8>ko datterino",28,"tomato","reference",61
-"20","Uge 2021-38","5700382338535","<d8>ko Spinat 200 gr",50,"spinage","reference",88
-"21","Uge 2021-38","5700382391622","Spidsk<e5>l",12,"cale","reference",40
-"22","Uge 2021-38","5700382516469","Courgette",19,"squash","reference",62
-"23","Uge 2021-38","5700382724581","Broccoli",37,"broccoli","reference",242
-"24","Uge 2021-38","5700382729920","X-tra Kartofler 2 kg",33,"potato","reference",58
-"25","Uge 2021-38","5700382739325","<d8>KO <c4>M KART 1 KG",40,"potato","reference",74
-"26","Uge 2021-38","5700382788019","<d8>KO <c4>NGLA. <c6>BLE Stor",11,"apples","reference",19
-"27","Uge 2021-38","5700382801596","Blommer",19,"plums","reference",48
-"28","Uge 2021-38","5700382948277","Guler<f8>dder h<e5>ndsort.",10,"carrots","reference",62
-"29","Uge 2021-38","5700383052218","Cocktail tomater",1,"tomato","reference",4
-"30","Uge 2021-38","5700383201715","<d8>ko S<f8>ris Kart 750 g",9,"potato","reference",14
-"31","Uge 2021-38","5700383591045","<d8>ko Courgetter",40,"squash","reference",84
-"32","Uge 2021-38","5700383878061","San Marzanotomat",122,"tomato","reference",119
-"33","Uge 2021-38","5700383979614","<c6>bler 6-8stk/bk. DK",24,"apples","reference",NA
-"34","Uge 2021-38","5700384125287","<d8>KO <c4>NGLAMARK HVEDEMEL DK 1 KG",10,"flour","reference",13
-"35","Uge 2021-38","5700384380556","<c4>M <d8>ko Blommetomater",23,"tomato","reference",39
-"36","Uge 2021-38","5700384882302","SF Mix tomater",14,"tomato","reference",30
-"37","Uge 2021-38","5700384899577","R<d8>DK<c5>L 1000-2000 GR",1,"cale","reference",NA
-"38","Uge 2021-38","5700384984211","GULER<d8>DDER 1,5 KG",24,"carrots","reference",42
-"39","Uge 2021-38","5701677001257","CHAMPIGNON 250 gr.",22,"mushrooms","reference",38
-"40","Uge 2021-38","5750006300721","Kart Vildmose 1,5 kg",24,"potato","reference",28
-"41","Uge 2021-38","5750006304415","SF Kart Asparges 1 k",6,"potato","reference",16
-"42","Uge 2021-38","5750006321023","<c4>NGLA P<c6>RER 500gr",6,"pear","reference",10
-"43","Uge 2021-38","5750006323393","<d8>KO <c4>M Guler<f8>dder 1",57,"carrots","reference",109
-"44","Uge 2021-38","5750006326691","<c4>ngla Broccoli",28,"broccoli","reference",40
-"45","Uge 2021-38","5750006327728","<c4>ngla R<f8>dbeder 1 kg",6,"beats","reference",14
-"46","Uge 2021-38","5750006329289","Blomk<e5>l",78,"cale","reference",122
-"47","Uge 2021-38","5750006331084","Kartofler Bage 1,5 k",19,"potato","reference",22
-"48","Uge 2021-38","5750006339622","Kartofler Mos 2 kg",12,"potato","reference",19
-"49","Uge 2021-38","5750006343506","<c4>ngla <d8>ko tomater",13,"tomato","reference",19
-"50","Uge 2021-38","5750006344084","Angla R<f8>dl<f8>g 750 gr",16,"onion","reference",30
-"51","Uge 2021-38","5750006344138","K&A Classic tomater",5,"tomato","reference",38
-"52","Uge 2021-38","5750006361050","P<c6>RER 1KG",24,"pear","reference",38
-"53","Uge 2021-38","5750006363634","<c4>nglamark <e6>bler 1 kg",6,"apples","reference",88
-"54","Uge 2021-38","5756605000390","Kart Alexandra 850 g",1,"potato","reference",6
-"55","Uge 2021-38","7340011320777","<d8>KO <c4>NGLAMARK MAJSMEL 500 G",3,"flour","reference",2
-"56","Uge 2021-38","7340011321194","COOP MINERALVAND 50C",185,"water","reference",382
-"57","Uge 2021-38","7340011340058","L<d8>SE MAJS X-TRA 300/285 G",26,"corn","reference",34
-"58","Uge 2021-38","7340011351085","COOP L<d8>SE MAJS 3-PAK 594/504 G",9,"corn","reference",10
-"59","Uge 2021-38","7340011352549","FULDKORNSMEL COOP 1 KG",3,"flour","reference",6
-"60","Uge 2021-38","7340011364368","COOP MINERALVAND 2L",24,"water","reference",55
-"61","Uge 2021-38","7340011464587","X-TRA R<d8>DBEDER I SKIVER 670/430 G",8,"beats","reference",16
-"62","Uge 2021-38","7340011481782","<d8>ko <c4>M HK Spinat",6,"spinage","reference",18
-"63","Uge 2021-38","7340011487906","<d8>KO <c4>NGLAMARK KIK<c6>RTER 380/230 G",31,"chickpea","reference",62
-"64","Uge 2021-38","7340191112582","<d8>ko <c4>M Broccoli 400g",9,"broccoli","reference",16
+"","X1","uge","vare","X3","oms.x","prod_cat","intervention","oms"
+"1",1,"Uge 2021-38","57095370","KILDEV<c6>LD 50CL",29,"water","reference",37
+"2",2,"Uge 2021-38","5700380222096","R<f8>dbeder 1,5 kg.",5,"beats","reference",7
+"3",3,"Uge 2021-38","5700380268926","<d8>KO <c4>M SPIDSK<c5>L",141,"cale","reference",199
+"4",4,"Uge 2021-38","5700380269572","L<f8>g 1 kg 40-60 mm",27,"onion","reference",83
+"5",5,"Uge 2021-38","5700380394816","Kart Lammefjord 1,5",15,"potato","reference",52
+"6",6,"Uge 2021-38","5700380806210","Knoldselleri",7,"celeriac","reference",16
+"7",7,"Uge 2021-38","5700380988244","Hvidk<e5>l 1000-1800 gr",NA,"cale","reference",NA
+"8",8,"Uge 2021-38","5700381206774","<d8>ko <c4>M porrer 1 stk",44,"leek","reference",84
+"9",9,"Uge 2021-38","5700381232315","<d8>KO <c4>M KART SM<c5>",40,"potato","reference",34
+"10",10,"Uge 2021-38","5700381563587","COOP DANSKVAND 2L",39,"water","reference",66
+"11",11,"Uge 2021-38","5700381660255","<c4>ngla <f8>ko gr<f8>nk<e5>l",7,"cale","reference",10
+"12",12,"Uge 2021-38","5700381715467","Br<f8>dC MINERALV 50cL",722,"bread","reference",553
+"13",13,"Uge 2021-38","5700381757511","<c4>ngla <f8>ko Blomk<e5>l",13,"cale","reference",12
+"14",14,"Uge 2021-38","5700381768852","SF HINDB<c6>R 170 g.",28,"berries","reference",68
+"15",15,"Uge 2021-38","5700381779827","Porrer",39,"leek","reference",82
+"16",16,"Uge 2021-38","5700381884897","<d8>KO <c4>NGLAMARK HVEDEMEL DK 2 KG",17,"flour","reference",19
+"17",17,"Uge 2021-38","5700382004812","<d8>ko <c4>M Portobello",6,"mushrooms","reference",12
+"18",18,"Uge 2021-38","5700382039487","P<e6>rer, store 6stk.DK",62,"pear","reference",109
+"19",19,"Uge 2021-38","5700382094080","<c4>ngla <f8>ko datterino",28,"tomato","reference",61
+"20",20,"Uge 2021-38","5700382338535","<d8>ko Spinat 200 gr",50,"spinage","reference",88
+"21",21,"Uge 2021-38","5700382391622","Spidsk<e5>l",12,"cale","reference",40
+"22",22,"Uge 2021-38","5700382516469","Courgette",19,"squash","reference",62
+"23",23,"Uge 2021-38","5700382724581","Broccoli",37,"broccoli","reference",242
+"24",24,"Uge 2021-38","5700382729920","X-tra Kartofler 2 kg",33,"potato","reference",58
+"25",25,"Uge 2021-38","5700382739325","<d8>KO <c4>M KART 1 KG",40,"potato","reference",74
+"26",26,"Uge 2021-38","5700382788019","<d8>KO <c4>NGLA. <c6>BLE Stor",11,"apples","reference",19
+"27",27,"Uge 2021-38","5700382801596","Blommer",19,"plums","reference",48
+"28",28,"Uge 2021-38","5700382948277","Guler<f8>dder h<e5>ndsort.",10,"carrots","reference",62
+"29",29,"Uge 2021-38","5700383052218","Cocktail tomater",1,"tomato","reference",4
+"30",30,"Uge 2021-38","5700383201715","<d8>ko S<f8>ris Kart 750 g",9,"potato","reference",14
+"31",31,"Uge 2021-38","5700383591045","<d8>ko Courgetter",40,"squash","reference",84
+"32",32,"Uge 2021-38","5700383878061","San Marzanotomat",122,"tomato","reference",119
+"33",33,"Uge 2021-38","5700383979614","<c6>bler 6-8stk/bk. DK",24,"apples","reference",NA
+"34",34,"Uge 2021-38","5700384125287","<d8>KO <c4>NGLAMARK HVEDEMEL DK 1 KG",10,"flour","reference",13
+"35",35,"Uge 2021-38","5700384380556","<c4>M <d8>ko Blommetomater",23,"tomato","reference",39
+"36",36,"Uge 2021-38","5700384882302","SF Mix tomater",14,"tomato","reference",30
+"37",37,"Uge 2021-38","5700384899577","R<d8>DK<c5>L 1000-2000 GR",1,"cale","reference",NA
+"38",38,"Uge 2021-38","5700384984211","GULER<d8>DDER 1,5 KG",24,"carrots","reference",42
+"39",39,"Uge 2021-38","5701677001257","CHAMPIGNON 250 gr.",22,"mushrooms","reference",38
+"40",40,"Uge 2021-38","5750006300721","Kart Vildmose 1,5 kg",24,"potato","reference",28
+"41",41,"Uge 2021-38","5750006304415","SF Kart Asparges 1 k",6,"potato","reference",16
+"42",42,"Uge 2021-38","5750006321023","<c4>NGLA P<c6>RER 500gr",6,"pear","reference",10
+"43",43,"Uge 2021-38","5750006323393","<d8>KO <c4>M Guler<f8>dder 1",57,"carrots","reference",109
+"44",44,"Uge 2021-38","5750006326691","<c4>ngla Broccoli",28,"broccoli","reference",40
+"45",45,"Uge 2021-38","5750006327728","<c4>ngla R<f8>dbeder 1 kg",6,"beats","reference",14
+"46",46,"Uge 2021-38","5750006329289","Blomk<e5>l",78,"cale","reference",122
+"47",47,"Uge 2021-38","5750006331084","Kartofler Bage 1,5 k",19,"potato","reference",22
+"48",48,"Uge 2021-38","5750006339622","Kartofler Mos 2 kg",12,"potato","reference",19
+"49",49,"Uge 2021-38","5750006343506","<c4>ngla <d8>ko tomater",13,"tomato","reference",19
+"50",50,"Uge 2021-38","5750006344084","Angla R<f8>dl<f8>g 750 gr",16,"onion","reference",30
+"51",51,"Uge 2021-38","5750006344138","K&A Classic tomater",5,"tomato","reference",38
+"52",52,"Uge 2021-38","5750006361050","P<c6>RER 1KG",24,"pear","reference",38
+"53",53,"Uge 2021-38","5750006363634","<c4>nglamark <e6>bler 1 kg",6,"apples","reference",88
+"54",54,"Uge 2021-38","5756605000390","Kart Alexandra 850 g",1,"potato","reference",6
+"55",55,"Uge 2021-38","7340011320777","<d8>KO <c4>NGLAMARK MAJSMEL 500 G",3,"flour","reference",2
+"56",56,"Uge 2021-38","7340011321194","COOP MINERALVAND 50C",185,"water","reference",382
+"57",57,"Uge 2021-38","7340011340058","L<d8>SE MAJS X-TRA 300/285 G",26,"corn","reference",34
+"58",58,"Uge 2021-38","7340011351085","COOP L<d8>SE MAJS 3-PAK 594/504 G",9,"corn","reference",10
+"59",59,"Uge 2021-38","7340011352549","FULDKORNSMEL COOP 1 KG",3,"flour","reference",6
+"60",60,"Uge 2021-38","7340011364368","COOP MINERALVAND 2L",24,"water","reference",55
+"61",61,"Uge 2021-38","7340011464587","X-TRA R<d8>DBEDER I SKIVER 670/430 G",8,"beats","reference",16
+"62",62,"Uge 2021-38","7340011481782","<d8>ko <c4>M HK Spinat",6,"spinage","reference",18
+"63",63,"Uge 2021-38","7340011487906","<d8>KO <c4>NGLAMARK KIK<c6>RTER 380/230 G",31,"chickpea","reference",62
+"64",64,"Uge 2021-38","7340191112582","<d8>ko <c4>M Broccoli 400g",9,"broccoli","reference",16
