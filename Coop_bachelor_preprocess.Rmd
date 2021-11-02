@@ -356,32 +356,110 @@ write.csv(x=df_ref_label, file="df_ref_label.csv")
 
 illustration_test <- df_ref_label %>%
   filter(prod_cat.x %in% c("cale", "spinage", "squash")) %>% 
-  ggplot(aes(prod_cat.x, oms, fill = intervention.x))+geom_bar( stat = "summary")+ 
+  ggplot(aes(prod_cat.x, oms, fill = intervention.x))+geom_bar( stat = "summary", position = "dodge")+ 
   xlab("something")+ ylab("something")
 
 illustration_test
 
+
+
+illustration_test_1 <- coop %>%
+  ggplot(aes(intervention.x, oms))+geom_bar( stat = "summary", position = "dodge")+ 
+  xlab("something")+ ylab("something")
+
+illustration_test_1
+
+library(readr)
+df_ref_nudge <- read_csv("df_ref_nudge.csv")
+View(df_ref_nudge)
+
+
+
+
+illustration_test_12 <- df_ref_nudge %>%
+  filter(!(X3 %in% c("<d8>ko 365 Guler<f8>dder 1", "Coop HK spinat 1kg"))) %>% 
+  ggplot(aes(intervention, oms))+geom_bar( stat = "summary", position = "dodge")+ 
+  xlab("something")+ ylab("something")
+
+illustration_test_12
+
 ```
+
 
 ```{r}
 
-coop <- read_csv("~/Uni stuff/Bachelor/bachelor/df_ref_label.csv")
+#coop <- read_csv("~/Uni stuff/Bachelor/bachelor/df_ref_label.csv")
 ```
+
+
+```{r}
+#coop$week <- 1
+#df_ref_nudge$week <- 1
+
+#make common columns 
+#coop <- coop %>% 
+  #rename(
+    #intervention = intervention.x,
+    prod_cat = prod_cat.x,
+    X3 = X4.x,
+    uge = uge.x
+    )
+
+write.csv(x=coop, file="coop.csv")
+
+
+coop$vare_grp<- c("j") 
+coop[c(2:9, 11, 13, 15,  17, 19:25, 28:32, 35:41, 43:51, 54, 61, 62, 64, 66:73, 75, 77, 79, 81, 83:89, 92:97, 100:106, 108:116, 119, 126, 127, 129), 9] <- c("vegetables")
+coop[c(14, 18, 26, 27, 33, 42, 52, 53, 78, 82, 90, 91, 98, 107, 117, 118), 9] <- c("fruit")
+coop[c(57, 58, 63, 122, 123, 128), 9] <- c("canned")
+coop[c(12, 16, 34, 55, 59, 76, 80, 99, 120, 124), 9] <- c("bread/flour")
+coop[c(1, 10, 56, 60, 65, 74, 121, 125), 9] <- c("water")
+
+
+df_ref_nudge$week <- 2
+df_ref_nudge$vare_grp<- c("j") 
+df_ref_nudge[c(1:5, 7:12, 14), 9] <- c("vegetables")
+df_ref_nudge[c(6, 13), 9] <- c("canned")
+
+
+
+df_big <- bind_rows(coop, df_ref_nudge, .id = "uge")
+```
+
+```{r}
+# Illustrate df_big
+
+df_big$intervention <- as.factor(df_big$intervention)
+df_big$week <- as.factor(df_big$week)
+
+
+
+df_big_plot <- df_big %>%
+  filter(!(X3 %in% c("<d8>ko 365 Guler<f8>dder 1", "Coop HK spinat 1kg"))) %>% 
+  ggplot(aes(week, oms, fill = intervention))+geom_bar( stat = "summary", position = "dodge")+ 
+  xlab("Intervention week")+ ylab("Mean of sold products")
+
+df_big_plot
+
+```
+
 
 Building model
 ```{r}
 
-# Making products and intervention into factors
-coop$prod_cat.x <- as.factor(coop$prod_cat.x)
-coop$intervention.x <- as.factor(coop$intervention.x)
 
-m0 <- lm(oms  ~ intervention.x, data = coop, REML = FALSE)
-m1 <- lmer(oms  ~ intervention.x + (1|prod_cat.x), data = coop, REML = FALSE)
+
+# Making products and intervention into factors
+coop$prod_cat <- as.factor(coop$prod_cat)
+coop$intervention <- as.factor(coop$intervention)
+
+m0 <- lm(oms  ~ intervention, data = coop, REML = FALSE)
+m1 <- lmer(oms  ~ intervention + (1|prod_cat), data = coop, REML = FALSE)
 
 summary(m0)
 summary(m1)
 
-plot(m0)
+plot(m1)
 
 ```
 
