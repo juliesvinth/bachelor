@@ -265,10 +265,27 @@ nudge_new[c(6), 6] <- c("chickpea")
 
 
 
+
 df_ref_nudge <- bind_rows(nudge_new, test, .id = "uge")
 
 
 write.csv(x=df_ref_nudge, file="df_ref_nudge.csv")
+
+#df_ref_nudge <- read_csv("df_ref_nudge.csv")
+#df_ref_nudge <- df_ref_nudge[-c(2), ]
+
+df_ref_nudge[c(14), 1] <- NA
+
+df_ref_nudge$vare <- as.numeric(df_ref_nudge$vare)
+df_ref_nudge$oms <- as.numeric(df_ref_nudge$oms)
+
+df_ref_nudge[c(14), 1] <- 14
+df_ref_nudge[c(14), 2] <- 2
+df_ref_nudge[c(14), 3] <- 7340191112711
+df_ref_nudge[c(14), 4] <- "Coop HK spinat 1kg"
+df_ref_nudge[c(14), 5] <- "reference"
+df_ref_nudge[c(14), 6] <- 10
+df_ref_nudge[c(14), 7] <- "spinage"
 
 ```
 
@@ -369,9 +386,7 @@ illustration_test_1 <- coop %>%
 
 illustration_test_1
 
-library(readr)
-df_ref_nudge <- read_csv("df_ref_nudge.csv")
-View(df_ref_nudge)
+
 
 
 
@@ -418,12 +433,15 @@ coop[c(1, 10, 56, 60, 65, 74, 121, 125), 9] <- c("water")
 
 df_ref_nudge$week <- 2
 df_ref_nudge$vare_grp<- c("j") 
-df_ref_nudge[c(1:5, 7:12, 14), 9] <- c("vegetables")
-df_ref_nudge[c(6, 13), 9] <- c("canned")
+df_ref_nudge[c(1:4, 6:11, 13, 14), 9] <- c("vegetables")
+df_ref_nudge[c(5, 12), 9] <- c("canned")
 
 
 
 df_big <- bind_rows(coop, df_ref_nudge, .id = "uge")
+
+write.csv(x=df_big, file="df_big.csv")
+
 ```
 
 ```{r}
@@ -461,5 +479,53 @@ summary(m1)
 
 plot(m1)
 
+```
+```{r}
+inspiration <- read_delim("inspiration.csv", 
+    ";", escape_double = FALSE, trim_ws = TRUE)
+
+inspiration[,6] <- c("inspiration")
+inspiration[,7] <- c(3)
+
+
+inspiration_ref <- read_delim("inspiration_ref.csv", 
+    ";", escape_double = FALSE, trim_ws = TRUE)
+
+inspiration_ref[,6] <- c("reference")
+inspiration_ref[,7] <- c(3)
+
+
+
+df_insp_only <- bind_rows(inspiration_ref, inspiration, .id = "uge")
+
+
+
+df_insp_only$prod_cat <- "j"
+
+
+df_insp_only$vare_grp <- "j"
+df_insp_only[c(2, 3, 5, 9:13, 15, 16, 25, 26, 28, 32:36, 38, 39), 8] <- c("vegetable")
+df_insp_only[c(18, 19, 41, 42), 8] <- c("canned")
+df_insp_only[c(4, 6, 27, 29), 8] <- c("herbes")
+df_insp_only[c(20, 21, 43, 44), 8] <- c("spices")
+df_insp_only[c(1, 22, 24, 45), 8] <- c("cheese")
+df_insp_only[c(14, 17, 37, 40), 8] <- c("pasta_stuff")
+df_insp_only[c(7, 23, 30, 46), 8] <- c("boullion/seed")
+
+df_big$week <- as.numeric(df_big$week)
+
+df_big_final <- bind_rows(df_big, df_insp_only, .id = "uge")
+
+```
+
+
+
+```{r}
+
+df_big__final_plot <- df_big_final %>%
+  ggplot(aes(week, oms, fill = intervention))+geom_bar( stat = "summary", position = "dodge")+ 
+  xlab("Intervention week")+ ylab("Mean of sold products")
+
+df_big__final_plot
 ```
 
