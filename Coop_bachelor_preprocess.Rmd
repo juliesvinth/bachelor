@@ -471,11 +471,46 @@ Building model
 coop$prod_cat <- as.factor(coop$prod_cat)
 coop$intervention <- as.factor(coop$intervention)
 
-m0 <- lm(oms  ~ intervention, data = coop, REML = FALSE)
-m1 <- lmer(oms  ~ intervention + (1|prod_cat), data = coop, REML = FALSE)
+df_big_final$week <- as.factor(df_big_final$week)
+df_big_final$intervention <- as.factor(df_big_final$intervention)
+
+m0 <- lm(oms  ~ intervention, data = df_big_final, REML = FALSE)
+m1 <- lmer(oms  ~ intervention + (1|vare_grp), data = df_big_final, REML = FALSE)
+
+m2 <- lmer(oms  ~ intervention + (1|vare_grp)+ (1|week), data = df_big_final, REML = FALSE)
+
+
+
+df_big_final$week <- as.numeric(df_big_final$week)
+
+
+# Exploring intevention 1 and 2
+df_week_1_2 <- filter(df_big_final, week <= 2)
+
+m_1_2 <- lmer(oms ~ intervention + (1|vare_grp), data = df_week_1_2, REML = F)
+summary(m_1_2)
+
+# Exploring intervention 1 and 3
+df_week_1_3 <- filter(df_big_final, week != 2)
+m_1_3 <- lmer(oms ~ intervention + (1|vare_grp), data = df_week_1_3, REML = F)
+summary(m_1_3)
+
+pairwise.t.test(df_week_1_3$oms, df_week_1_3$intervention, p.adjust.method="bonferroni")
+
+# Exploring intervention 2 and 3
+df_week_2_3 <- filter(df_big_final, week >= 2)
+m_2_3 <- lmer(oms ~ intervention + (1|vare_grp), data = df_week_2_3, REML = F)
+summary(m_2_3)
+
+
+pairwise.t.test(df_week_1_2$oms, df_week_1_2$intervention, p.adj = "bonf")
+pairwise.t.test(df_week_1_3$oms, df_week_1_3$intervention, p.adj = "bonf")
+pairwise.t.test(df_week_2_3$oms, df_week_2_3$intervention, p.adj = "bonf")
+
 
 summary(m0)
 summary(m1)
+summary(m2)
 
 plot(m1)
 
@@ -522,10 +557,132 @@ df_big_final <- bind_rows(df_big, df_insp_only, .id = "uge")
 
 ```{r}
 
-df_big__final_plot <- df_big_final %>%
+
+###### Bar plot
+
+df_bar_overall <- df_big_final %>%
   ggplot(aes(week, oms, fill = intervention))+geom_bar( stat = "summary", position = "dodge")+ 
+  xlab("Intervention week")+ ylab("Mean of sold products")+
+  geom_errorbar(aes(ymin=oms-sd, ymax=oms+sd), width=.2,
+                 position=position_dodge(.9))
+
+df_bar_overall
+
+
+###### VIOLIN
+
+df_violin <- df_big_final %>%
+  ggplot(aes(as.factor(week), oms, fill = intervention))+geom_violin()+ 
   xlab("Intervention week")+ ylab("Mean of sold products")
 
-df_big__final_plot
+df_violin
+
+
+# Week 1
+df_violin_1 <- df_big_final %>%
+  filter(week == 1) %>% 
+  ggplot(aes(as.factor(week), oms, fill = intervention))+geom_violin()+
+  facet_wrap(~ vare_grp)+
+  xlab("Intervention week")+ ylab("Mean of sold products")
+
+df_violin_1
+
+
+# Week 2
+df_violin_2 <- df_big_final %>%
+  filter(week == 2) %>% 
+  ggplot(aes(as.factor(week), oms, fill = intervention))+geom_violin()+
+  facet_wrap(~ vare_grp)+
+  xlab("Intervention week")+ ylab("Mean of sold products")
+
+df_violin_2
+
+
+# Week 3
+df_violin_3 <- df_big_final %>%
+  filter(week == 3) %>% 
+  ggplot(aes(as.factor(week), oms, fill = intervention))+geom_violin()+
+  facet_wrap(~ vare_grp)+
+  xlab("Intervention week")+ ylab("Mean of sold products")
+
+df_violin_3
+
+```
+
+
+
+```{r}
+
+######### JITTER
+
+# week 1 - only vegetables
+
+df_jitter_veg_1 <- df_big_final %>%
+  filter(week == 1 & vare_grp == "vegetables") %>% 
+  ggplot(aes(as.factor(week), oms, color = intervention))+geom_jitter()+
+  facet_wrap(~ intervention)+
+  xlab("Intervention week")+ ylab("Mean of sold products")
+
+df_jitter_veg_1
+
+# week 2 - only vegetables
+
+df_jitter_veg_2 <- df_big_final %>%
+  filter(week == 2 & vare_grp == "vegetables") %>% 
+  ggplot(aes(as.factor(week), oms, color = intervention))+geom_jitter()+
+  facet_wrap(~ intervention)+
+  xlab("Intervention week")+ ylab("Sold products")
+
+df_jitter_veg_2
+
+# week 1- jitter
+
+
+df_jitter_1 <- df_big_final %>%
+  filter(week == 1) %>% 
+  ggplot(aes(as.factor(week), oms, color = vare_grp))+geom_jitter()+
+  facet_wrap(~ intervention)+
+  xlab("Intervention week")+ ylab("Sold products")
+
+df_jitter_1
+
+
+# week 2- jitter
+
+df_jitter_2 <- df_big_final %>%
+  filter(week == 2) %>% 
+  ggplot(aes(as.factor(week), oms, color = vare_grp))+geom_jitter()+
+  facet_wrap(~ intervention)+
+  xlab("Intervention week")+ ylab("Sold products")
+
+df_jitter_2
+
+# week 3 - jitter
+
+df_jitter_3 <- df_big_final %>%
+  filter(week == 3) %>% 
+  ggplot(aes(as.factor(week), oms, color = vare_grp))+geom_jitter()+
+  facet_wrap(~ intervention)+
+  xlab("Intervention week")+ ylab("Sold products")
+
+df_jitter_3
+
+
+
+
+######### Density
+
+
+dens_big <- df_big_final %>%
+  filter(week == 1 & vare_grp == "vegetables") %>% 
+  ggplot(aes(oms, color = intervention))+geom_density()
+  
+dens_big
+```
+
+```{r}
+
+write.csv(x=df_big_final, file="df_big_final.csv")
+
 ```
 

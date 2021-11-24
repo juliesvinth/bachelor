@@ -1,0 +1,333 @@
+---
+title: "Bachelor_clean"
+author: "Julie Svinth Nielsen"
+date: "24/11/2021"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(readr)
+library(dplyr)
+library(lme4)
+library(tidyr)
+```
+
+```{r}
+df_big_final <- read_csv("df_big_final.csv")
+
+
+
+```
+
+
+
+```{r}
+
+
+###### Bar plot
+
+df_bar_overall <- df_big_final %>%
+  ggplot(aes(week, oms, fill = intervention))+geom_bar( stat = "summary", position = "dodge")+ 
+  xlab("Intervention week")+ ylab("Mean of sold products")
+
+df_bar_overall
+```
+
+```{r}
+
+###### VIOLIN
+
+df_violin <- df_big_final %>%
+  ggplot(aes(as.factor(week), oms, fill = intervention))+geom_violin()+ 
+  xlab("Intervention week")+ ylab("Mean of sold products")
+
+df_violin
+
+
+# Week 1
+df_violin_1 <- df_big_final %>%
+  filter(week == 1) %>% 
+  ggplot(aes(as.factor(week), oms, fill = intervention))+geom_violin()+
+  facet_wrap(~ vare_grp)+
+  xlab("Intervention week")+ ylab("Mean of sold products")
+
+df_violin_1
+
+
+# Week 2
+df_violin_2 <- df_big_final %>%
+  filter(week == 2) %>% 
+  ggplot(aes(as.factor(week), oms, fill = intervention))+geom_violin()+
+  facet_wrap(~ vare_grp)+
+  xlab("Intervention week")+ ylab("Mean of sold products")
+
+df_violin_2
+
+
+# Week 3
+df_violin_3 <- df_big_final %>%
+  filter(week == 3) %>% 
+  ggplot(aes(as.factor(week), oms, fill = intervention))+geom_violin()+
+  facet_wrap(~ vare_grp)+
+  xlab("Intervention week")+ ylab("Mean of sold products")
+
+df_violin_3
+
+```
+
+
+
+```{r}
+
+######### JITTER
+
+# week 1 - only vegetables
+
+df_jitter_veg_1 <- df_big_final %>%
+  filter(week == 1 & vare_grp == "vegetables") %>% 
+  ggplot(aes(as.factor(week), oms, color = intervention))+geom_jitter()+
+  facet_wrap(~ intervention)+
+  xlab("Intervention week")+ ylab("Mean of sold products")
+
+df_jitter_veg_1
+
+# week 2 - only vegetables
+
+df_jitter_veg_2 <- df_big_final %>%
+  filter(week == 2 & vare_grp == "vegetables") %>% 
+  ggplot(aes(as.factor(week), oms, color = intervention))+geom_jitter()+
+  facet_wrap(~ intervention)+
+  xlab("Intervention week")+ ylab("Sold products")
+
+df_jitter_veg_2
+
+# week 1- jitter
+
+
+df_jitter_1 <- df_big_final %>%
+  filter(week == 1) %>% 
+  ggplot(aes(as.factor(week), oms, color = vare_grp))+geom_jitter()+
+  facet_wrap(~ intervention)+
+  xlab("Intervention week")+ ylab("Sold products")
+
+df_jitter_1
+
+
+# week 2- jitter
+
+df_jitter_2 <- df_big_final %>%
+  filter(week == 2) %>% 
+  ggplot(aes(as.factor(week), oms, color = vare_grp))+geom_jitter()+
+  facet_wrap(~ intervention)+
+  xlab("Intervention week")+ ylab("Sold products")
+
+df_jitter_2
+
+# week 3 - jitter
+
+df_jitter_3 <- df_big_final %>%
+  filter(week == 3) %>% 
+  ggplot(aes(as.factor(week), oms, color = vare_grp))+geom_jitter()+
+  facet_wrap(~ intervention)+
+  xlab("Intervention week")+ ylab("Sold products")
+
+df_jitter_3
+
+
+
+
+######### Density
+
+
+dens_big <- df_big_final %>%
+  filter(week == 1 & vare_grp == "vegetables") %>% 
+  ggplot(aes(oms, color = intervention))+geom_density()
+  
+dens_big
+```
+
+
+```{r}
+
+m0 <- lm(oms  ~ intervention, data = df_big_final, REML = FALSE)
+m1 <- lmer(oms  ~ intervention + (1|vare_grp), data = df_big_final, REML = FALSE)
+
+m2 <- lmer(oms  ~ intervention + (1|vare_grp)+ (1|week), data = df_big_final, REML = FALSE)
+
+
+
+df_big_final$week <- as.numeric(df_big_final$week)
+
+
+# Exploring intevention 1 and 2
+df_week_1_2 <- filter(df_big_final, week <= 2)
+
+m_1_2 <- lmer(oms ~ intervention + (1|vare_grp), data = df_week_1_2, REML = F)
+summary(m_1_2)
+
+# Exploring intervention 1 and 3
+df_week_1_3 <- filter(df_big_final, week != 2)
+m_1_3 <- lmer(oms ~ intervention + (1|vare_grp), data = df_week_1_3, REML = F)
+summary(m_1_3)
+
+pairwise.t.test(df_week_1_3$oms, df_week_1_3$intervention, p.adjust.method="bonferroni")
+
+# Exploring intervention 2 and 3
+df_week_2_3 <- filter(df_big_final, week >= 2)
+m_2_3 <- lmer(oms ~ intervention + (1|vare_grp), data = df_week_2_3, REML = F)
+summary(m_2_3)
+
+
+pairwise.t.test(df_week_1_2$oms, df_week_1_2$intervention, p.adj = "bonf")
+pairwise.t.test(df_week_1_3$oms, df_week_1_3$intervention, p.adj = "bonf")
+pairwise.t.test(df_week_2_3$oms, df_week_2_3$intervention, p.adj = "bonf")
+
+
+summary(m0)
+summary(m1)
+summary(m2)
+
+plot(m1)
+
+df_big_final$intervention <- as.factor(df_big_final$intervention)
+
+m_full <- lmer(oms ~ )
+
+```
+
+####### Help from Tylén 
+```{r}
+
+# Create data frames for each week
+df_week_1 <- filter(df_big_final, week != 2 & week !=3)
+
+df_week_2 <- filter(df_big_final, week != 1 & week !=3)
+
+df_week_3 <- filter(df_big_final, week != 1 & week !=2)
+
+
+# Week 1 - create difference column and remove reference rows
+df_week1_ref <-filter(df_week_1, intervention != "label")
+df_week1_ref <- na.omit(df_week1_ref)
+
+df_week1_ref <- df_week1_ref %>% 
+  select("vare", "oms")
+
+df_week1_lab <-filter(df_week_1, intervention != "reference")
+df_week1_lab <- na.omit(df_week1_lab)
+
+df_week_1_new <- left_join(df_week1_lab,df_week1_ref, by = "vare")
+
+
+
+df_week_1_new$diff <- df_week_1_new$oms.x - df_week_1_new$oms.y
+
+write.csv(x=df_week_1_new, file="df_w_1.csv")
+
+# Week 2 create difference column
+
+df_week2_ref <-filter(df_week_2, intervention != "nudge")
+
+df_week2_nud <-filter(df_week_2, intervention != "reference")
+
+df_week2_ref <- df_week2_ref %>% 
+  select("vare", "oms")
+
+df_week_2_new <- left_join(df_week2_nud,df_week2_ref, by = "vare")
+
+df_week_2_new$diff <- df_week_2_new$oms.x - df_week_2_new$oms.y
+
+write.csv(x=df_week_2_new, file="df_w_2.csv")
+
+# Week 3 - create difference column
+
+
+df_week3_ref <-filter(df_week_3, intervention != "inspiration")
+
+df_week3_insp <-filter(df_week_3, intervention != "reference")
+
+df_week3_ref <- df_week3_ref %>% 
+  select("vare", "oms")
+
+df_week_3_new <- left_join(df_week3_insp,df_week3_ref, by = "vare")
+
+df_week_3_new$diff <- df_week_3_new$oms.x - df_week_3_new$oms.y
+
+write.csv(x=df_week_3_new, file="df_w_3.csv")
+
+
+```
+
+Model making
+```{r}
+
+# Load in data
+df_w_1 <- read_csv("df_w_1.csv")
+df_w_2 <- read_csv("df_w_2.csv")
+df_w_3 <- read_csv("df_w_3.csv")
+
+
+# Hypothesis 1
+t.test(df_w_1$diff, mu = 0, alternative = "greater")
+
+
+# Hypothesis 2
+t.test(df_w_2$diff, mu = 0, alternative = "greater")
+
+# Hypothesis 3
+
+t.test(df_w_3$diff, mu = 0, alternative = "greater")
+```
+Access to the values returned by t.test() function
+The result of t.test() function is a list containing the following components:
+
+
+statistic: the value of the t test statistics
+parameter: the degrees of freedom for the t test statistics
+p.value: the p-value for the test
+conf.int: a confidence interval for the mean appropriate to the specified alternative hypothesis.
+estimate: the means of the two groups being compared (in the case of independent t test) or difference in means (in the case of paired t test).
+
+Visualization
+```{r}
+
+df_overall <- rbind(df_w_1, df_w_2, df_w_3)
+
+df_overall$intervention <- as.factor(df_overall$intervention)
+
+df_overall %>%
+  group_by(intervention) %>%
+  summarise(mean_diff = mean(diff, na.rm = T), se = sd(diff, na.rm = T)/(sqrt(length(diff)))) %>% 
+  ggplot(aes(intervention, mean_diff, color = intervention)) +
+  geom_point() +
+  geom_errorbar(aes(ymin=mean_diff-se, ymax=mean_diff+se), width=.2,
+                position=position_dodge(.9))
+
+
+```
+
+Hypothesis 4
+```{r}
+
+# Relevel intervention - label as baseline
+df_overall$intervention <- relevel(df_overall$intervention, ref = "label")
+
+# Does nudging have a significant greater effect than labeling?
+m1 <- lmer(diff ~ intervention + (1|vare_grp), data = df_overall)
+
+summary(m)
+```
+
+
+```{r}
+# Does inspiration have a greater effect than the two other interventions
+
+# Relevel intervention - inspiration as baseline
+df_overall$intervention <- relevel(df_overall$intervention, ref = "inspiration")
+
+m2 <- lmer(diff ~ intervention + (1|vare_grp), data = df_overall)
+
+summary(m2)
+```
+
