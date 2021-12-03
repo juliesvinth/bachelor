@@ -5,7 +5,11 @@ date: "24/11/2021"
 output: html_document
 ---
 
+
+
 ```{r}
+
+
 library(tidyverse)
 library(readr)
 library(dplyr)
@@ -268,16 +272,57 @@ df_w_2 <- read_csv("df_w_2.csv")
 df_w_3 <- read_csv("df_w_3.csv")
 
 
+
+# Statistical summaries of difference
+summary(df_w_1$diff)
+summary(df_w_2$diff)
+summary(df_w_3$diff)
+
+
+
+library(ggpubr)
+ggboxplot(df_w_1$diff, 
+          ylab = "difference", xlab = FALSE,
+          ggtheme = theme_minimal())
+
+
+ggboxplot(df_w_2$diff, 
+          ylab = "difference", xlab = FALSE,
+          ggtheme = theme_minimal())
+
+
+ggboxplot(df_w_3$diff, 
+          ylab = "difference", xlab = FALSE,
+          ggtheme = theme_minimal())
+
+
+# Normality
+shapiro.test(df_w_1$diff) # Normal
+shapiro.test(df_w_2$diff) # Normal
+shapiro.test(df_w_3$diff) # Not normal
+```
+
+
+```{r}
+
 # Hypothesis 1
 t.test(df_w_1$diff, mu = 0, alternative = "greater")
 
+mean(df_w_1$diff, na.rm = TRUE)
+sd(df_w_1$diff, na.rm = TRUE)
 
 # Hypothesis 2
 t.test(df_w_2$diff, mu = 0, alternative = "greater")
 
+mean(df_w_2$diff)
+sd(df_w_2$diff)
+
 # Hypothesis 3
 
 t.test(df_w_3$diff, mu = 0, alternative = "greater")
+
+mean(df_w_3$diff)
+sd(df_w_3$diff)
 ```
 Access to the values returned by t.test() function
 The result of t.test() function is a list containing the following components:
@@ -310,13 +355,31 @@ df_overall %>%
 Hypothesis 4
 ```{r}
 
-# Relevel intervention - label as baseline
-df_overall$intervention <- relevel(df_overall$intervention, ref = "label")
 
-# Does nudging have a significant greater effect than labeling?
-m1 <- lmer(diff ~ intervention + (1|vare_grp), data = df_overall)
+# Normally distributed?
+with(df_overall, shapiro.test(diff[intervention == "label"]))# Not normal
+with(df_overall, shapiro.test(diff[intervention == "nudge"]))# Normal
 
-summary(m)
+# Visual inspection
+qqnorm(df_w_1$diff)
+qqnorm(df_w_2$diff)
+
+
+# F-test to test for homogeneity in variances
+
+df_lab_nug <- df_overall %>%
+  filter(!(intervention %in% c("inspiration")))
+
+var.test(diff ~ intervention, data = df_lab_nug)  
+
+
+
+df_lab_nug$intervention <- relevel(df_lab_nug$intervention, ref = "nudge")
+
+t.test(diff ~ intervention, alternative = "greater", data = df_lab_nug) # Welch one-tailed two-sample t-test
+
+
+
 ```
 
 
@@ -326,8 +389,8 @@ summary(m)
 # Relevel intervention - inspiration as baseline
 df_overall$intervention <- relevel(df_overall$intervention, ref = "inspiration")
 
-m2 <- lmer(diff ~ intervention + (1|vare_grp), data = df_overall)
+m1 <- lmer(diff ~ intervention + (1|vare_grp), data = df_overall)
 
-summary(m2)
+summary(m1)
 ```
 
