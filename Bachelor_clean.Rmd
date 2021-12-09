@@ -17,6 +17,13 @@ library(lme4)
 library(tidyr)
 library(ggpubr)
 library(rstatix)
+library(coin)
+library(cowplot) 
+library(lme4) 
+library(sjPlot) 
+library(sjmisc) 
+library(effects)
+library(sjstats) 
 ```
 
 ```{r}
@@ -108,30 +115,36 @@ sd(df_w_1$diff_perc, na.rm = TRUE)
 # Visualizing
 bxp_w_1 <- ggboxplot(
   df_w_1$diff_perc, width = 0.5, add = c("mean", "jitter"), 
-  ylab = "Difference (%)", xlab = FALSE
+  ylab = "Difference (%)", xlab = "Labeling"
   )+
   ggtitle("Boxplot of Label Intervention")+
   theme_solarized()
 
 bxp_w_1
 
+df_w_1 %>% 
+  get_summary_stats(diff_perc, type = "median_iqr")
+
+df_w_1 %>% 
+  get_summary_stats(diff, type = "median_iqr")
 
 
 # Normality
-ggqqplot(df_w_1, x = "diff_perc")
+ggqqplot(df_w_1, x = "diff_perc") # Not normal
 
-stat.test <- t.test(df_w_1$diff_perc, mu = 0, alternative = "greater")
-stat.test_1
+gghistogram(df_w_1, x = "diff_perc", y = "..density..", 
+            fill = "steelblue",bins = 10, add_density = TRUE)
 
 
-# Effect size
-df_w_1 %>% cohens_d(diff_perc ~ 1, mu = 0) # small effect size
+# Using one-tailed one-sample  Wilcoxon test 
+wilcox.test(df_w_1$diff_perc, mu = 0, alternative = "greater")
 
-# Density plot
-ggdensity(df_w_1, x = "diff_perc", rug = TRUE, fill = "lightgray") +
-  scale_x_continuous(limits = c(-75, 75)) +
-  stat_central_tendency(type = "mean", color = "red", linetype = "dashed") +
-  geom_vline(xintercept = 0, color = "blue", linetype = "dashed") 
+
+
+
+# Effect size 
+df_w_1 %>%  wilcox_effsize(diff_perc ~ 1, mu = 0, alternative = "greater") # small effect size
+
 
 
 
@@ -142,43 +155,50 @@ ggdensity(df_w_1, x = "diff_perc", rug = TRUE, fill = "lightgray") +
 ```{r}
 # Hypothesis 2
 
-df_w_2$diff_perc <- (df_w_2$oms.x - df_w_2$oms.y)/df_w_2$oms.y*100
+#df_w_2$diff_perc <- (df_w_2$oms.x - df_w_2$oms.y)/df_w_2$oms.y*100
 
-df_w_2$diff_perc <- round(df_w_2$diff_perc, digits = 1)
+#df_w_2$diff_perc <- round(df_w_2$diff_perc, digits = 1)
 
 
-mean(df_w_2$diff_perc)
-sd(df_w_2$diff_perc)
 
 
 
 # Visualizing
 bxp_w_2 <- ggboxplot(
   df_w_2$diff_perc, width = 0.5, add = c("mean", "jitter"), 
-  ylab = "Difference (%)", xlab = FALSE
+  ylab = "Difference (%)", xlab = "Nudging"
   )+
   ggtitle("Boxplot of Nudging Intervention")+
   theme_solarized()
 
 bxp_w_2
 
+df_w_2 %>% 
+  get_summary_stats(diff_perc, type = "median_iqr")
+
+df_w_2 %>% 
+  get_summary_stats(diff, type = "median_iqr")
 
 
 # Normality
 ggqqplot(df_w_2, x = "diff_perc")
-
-stat.test <- t.test(df_w_2$diff_perc, mu = 0, alternative = "greater")
-
+df_w_2 %>% shapiro_test(diff_perc) # Assuming no normal distribution
 
 
-# Effect size
-df_w_2 %>% cohens_d(diff_perc ~ 1, mu = 0) # small effect size
+gghistogram(df_w_2, x = "diff_perc", y = "..density..", 
+            fill = "steelblue",bins = 4, add_density = TRUE)
 
-# Density plot
-ggdensity(df_w_2, x = "diff_perc", rug = TRUE, fill = "lightgray") +
-  scale_x_continuous(limits = c(-60, 145)) +
-  stat_central_tendency(type = "mean", color = "red", linetype = "dashed") +
-  geom_vline(xintercept = 0, color = "blue", linetype = "dashed") 
+
+# Using one-tailed one-sample  Wilcoxon test 
+wilcox.test(df_w_2$diff_perc, mu = 0, alternative = "greater")
+
+
+
+
+# Effect size 
+df_w_2 %>%  wilcox_effsize(diff_perc ~ 1, mu = 0, alternative = "greater") # small effect size
+
+
 
 
 
@@ -194,15 +214,12 @@ df_w_3$diff_perc <- round(df_w_3$diff_perc, digits = 1)
 
 
 
-mean(df_w_3$diff_perc)
-sd(df_w_3$diff_perc)
-
 
 
 # Visualizing
 bxp_w_3 <- ggboxplot(
   df_w_3$diff_perc, width = 0.5, add = c("mean", "jitter"), 
-  ylab = "Difference (%)", xlab = FALSE
+  ylab = "Difference (%)", xlab = "Inspiration"
   )+
   ggtitle("Boxplot of Inspiration Intervention")+
   theme_solarized()
@@ -210,34 +227,44 @@ bxp_w_3 <- ggboxplot(
 bxp_w_3
 
 
+df_w_3 %>% 
+  get_summary_stats(diff_perc, type = "median_iqr")
+df_w_3 %>% 
+  get_summary_stats(diff, type = "median_iqr")
 
 # Normality
 ggqqplot(df_w_3, x = "diff_perc")
 
+df_w_3 %>% shapiro_test(diff_perc) # Assuming no normal distribution
 
 
-# Effect size
-df_w_3 %>% cohens_d(diff_perc ~ 1, mu = 0) # small effect size
+gghistogram(df_w_3, x = "diff_perc", y = "..density..", 
+            fill = "steelblue",bins = 10, add_density = TRUE)
 
-# Density plot
-ggdensity(df_w_3, x = "diff_perc", rug = TRUE, fill = "lightgray") +
-  scale_x_continuous(limits = c(-105, 230)) +
-  stat_central_tendency(type = "mean", color = "red", linetype = "dashed") +
-  geom_vline(xintercept = 0, color = "blue", linetype = "dashed") 
+
+# Using one-tailed one-sample  Wilcoxon test 
+wilcox.test(df_w_3$diff_perc, mu = 0, alternative = "greater")
+
+
+
+
+# Effect size 
+df_w_3 %>%  wilcox_effsize(diff_perc ~ 1, mu = 0, alternative = "greater") # small effect size
 
 
 
 bxp_w_3
 ```
-Access to the values returned by t.test() function
-The result of t.test() function is a list containing the following components:
+```{r}
+# Boxplot collection for H1, H2, H3 and H4
+
+library(patchwork)
+
+(bxp_w_1 /bxp_w_2 ) | (bxp_w_3/bxp_lab_nug)
 
 
-statistic: the value of the t test statistics
-parameter: the degrees of freedom for the t test statistics
-p.value: the p-value for the test
-conf.int: a confidence interval for the mean appropriate to the specified alternative hypothesis.
-estimate: the means of the two groups being compared (in the case of independent t test) or difference in means (in the case of paired t test).
+```
+
 
 Visualization
 ```{r}
@@ -248,7 +275,7 @@ df_overall$intervention <- as.factor(df_overall$intervention)
 
 df_overall %>%
   group_by(intervention) %>%
-  summarise(mean_difference_score = mean(diff, na.rm = T), se = sd(diff, na.rm = T)/(sqrt(length(diff)))) %>% 
+  summarise(mean_difference_score = mean(diff_perc, na.rm = T), se = sd(diff_perc, na.rm = T)/(sqrt(length(diff_perc)))) %>% 
   ggplot(aes(intervention, mean_difference_score, fill = intervention)) +
   geom_bar(stat = "summary") +
   geom_errorbar(aes(ymin=mean_difference_score-se, ymax=mean_difference_score+se), width=.2,
@@ -264,40 +291,42 @@ df_lab_nug <- read_csv("df_lab_nug.csv")
 
 df_lab_nug$intervention <- as.factor(df_lab_nug$intervention)
 
-# summary stats
+
 df_lab_nug %>%
   group_by(intervention) %>%
-  get_summary_stats(diff_perc, type = "mean_sd")
+  get_summary_stats(diff_perc, type = "median_iqr")
 
 
 # Visualizing data
 bxp_lab_nug <- ggboxplot(
-  df_lab_nug, x = "intervention", y = "diff_perc", 
+  df_lab_nug, x = "intervention", y = "diff_perc", fill = "intervention",
   ylab = "Difference (%)", xlab = "Intervention", add = "jitter"
   )+
-  ggtitle("Comparison of Nudging and Label Intervention")+
-  theme_solarized()
+  ggtitle("Comparing Nudging and Labeling")+
+  theme_solarized()+
+  scale_fill_brewer(palette="Blues")
+
+
 bxp_lab_nug
 
 
 # Normality
-ggqqplot(df_lab_nug, x = "diff_perc", facet.by = "intervention")
+ggqqplot(df_lab_nug, x = "diff_perc", facet.by = "intervention") # Not normal distributed
 
 
-
-# Equality of variance
-df_lab_nug %>% levene_test(diff_perc ~ intervention) # No significant difference
-
-
+# Wilcoxon Rank Sum Test
 df_lab_nug$intervention <- relevel(df_lab_nug$intervention, ref = "nudge")
 
-t.test(diff_perc ~ intervention, alternative = "greater", data = df_lab_nug) # Welch one-tailed two-sample t-test
 
-# Effect size
+wilcox_test(diff_perc ~ intervention, alternative = "greater", data = df_lab_nug, paired = F) 
 
+
+
+ # Effect size
+wilcox_effsize(diff_perc ~ intervention, alternative = "greater", data = df_lab_nug)
 
  
-df_lab_nug %>% cohens_d(diff_perc ~ intervention, var.equal = F)
+# The median weight in female group was 62.9 (IQR = 2.33), whereas the median in male group was 86.3 (IQR = 4.59). The Wilcoxon test showed that the difference was significant (p < 0.0001, effect size r = 0.86).
 
 ```
 
@@ -307,10 +336,42 @@ df_lab_nug %>% cohens_d(diff_perc ~ intervention, var.equal = F)
 
 # Relevel intervention - inspiration as baseline
 df_overall$intervention <- relevel(df_overall$intervention, ref = "inspiration")
+df_overall$vare_grp <- as.factor(df_overall$vare_grp)
 
-m1 <- lmer(diff ~ intervention + (1|vare_grp), data = df_overall, REML = FALSE)
+m1 <- lm(diff_perc ~ intervention, data = df_overall)
 
 summary(m1)
+
+plot(m1)
+
+
+
+# Normality
+hist(df_overall$diff_perc)
+
+
+
+plot(diff_perc ~ intervention, data = df_overall)
+
+
+par(mfrow=c(2,2))
+
+
+plot(m1)
+
+
+
+
+sjPlot::plot_model(m1, 
+                   axis.labels=c("Nudging", "Labeling", "Intercept(Inspiration)"),
+                   show.values=T, show.p=T, show.intercept = T,
+                   title="Effect of Intervention on Climate-friendly Products - Measured as Difference score (in %)")
+
+
+sjPlot::tab_model(m1, 
+                  show.re.var= TRUE, 
+                  pred.labels =c("(Intercept)", "Labeling", "Nudging"),
+                  dv.labels= "Effect of Intervention on Climate-friendly Products - Measured as Difference score (in %)")
 ```
 
 
@@ -318,14 +379,14 @@ summary(m1)
 ```{r}
 # Hypothesis 1
 
-t.test(df_w_1$diff_perc, mu = 0, alternative = "greater")
+
 wilcox.test(df_w_1$diff_perc, mu = 0, alternative = "greater")
 
 # Hypothesis 2
-t.test(df_w_2$diff_perc, mu = 0, alternative = "greater")
+wilcox.test(df_w_2$diff_perc, mu = 0, alternative = "greater")
 
 # Hypothesis 3
-t.test(df_w_3$diff_perc, mu = 0, alternative = "greater")
+wilcox.test(df_w_3$diff_perc, mu = 0, alternative = "greater")
 
 
 ```
@@ -340,7 +401,7 @@ install.packages('ggthemes', dependencies = TRUE)
 library(ggthemes)
 
 
-df_overall %>%
+df_plot <- df_overall %>%
   group_by(intervention) %>%
   summarise(mean_difference_score = mean(diff_perc, na.rm = T), se = sd(diff_perc, na.rm = T)/(sqrt(length(diff_perc)))) %>% 
   ggplot(aes(intervention, mean_difference_score, fill = intervention)) +
@@ -351,12 +412,10 @@ df_overall %>%
   scale_fill_brewer(palette="Blues")+
   labs(x = "Intervention", y = "Difference score in percentage")+
   ggtitle("Intervention Effect on Purchase of Climate-friendly Products")
+
+
+df_plot + bxp_lab_nug
 ```
 
 
-
-```{r}
-ggplot(data=chol, aes(chol$AGE)) + 
-  geom_histogram()
-```
 
