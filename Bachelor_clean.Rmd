@@ -334,13 +334,16 @@ df_overall$int_type <- as.factor(df_overall$int_type)
 
 
 df_overall %>%
-  group_by(intervention) %>%
+  group_by(intervention, int_type) %>%
   summarise(mean_difference_score = mean(diff_perc, na.rm = T), se = sd(diff_perc, na.rm = T)/(sqrt(length(diff_perc)))) %>% 
   ggplot(aes(x = intervention, y = mean_difference_score, fill = int_type)) +
-  geom_bar(position = "stack", stat = "summary") +
+  geom_bar() +
   geom_errorbar(aes(ymin=mean_difference_score-se, ymax=mean_difference_score+se), width=.2,
                 position=position_dodge(.9))
 
+
+
+write.csv(x=df_overall, file="df_overall.csv")
 
 ```
 
