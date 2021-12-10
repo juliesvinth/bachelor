@@ -275,7 +275,7 @@ bxp_w_3 <- ggboxplot(
 bxp_w_3
 
 
-
+_
 
 df_w_3 %>% 
   get_summary_stats(diff_perc, type = "median_iqr")
