@@ -88,7 +88,17 @@ bxp_w_1 <- ggboxplot(
   ggtitle("Boxplot of Label Intervention")+
   theme_solarized()
 
+
+bxp_w_1_out <- ggboxplot(
+  df_w_1_out$diff, width = 0.5, add = c("mean", "jitter"), 
+  ylab = "Difference", xlab = "Labeling"
+  )+
+  ggtitle("Boxplot of Label Intervention")+
+  theme_solarized()
+
 bxp_w_1
+
+bxp_w_1_out
 
 df_w_1 %>% 
   get_summary_stats(diff, type = "median_iqr")
@@ -97,6 +107,7 @@ df_w_1 %>%
 
 # Normality
 ggqqplot(df_w_1, x = "diff") # Not normal
+ggqqplot(df_w_1_out, x = "diff") # Not normal
 
 
 gghistogram(df_w_1, x = "diff", y = "..density..", 
@@ -203,13 +214,13 @@ gghistogram(df_con, x = "diff", y = "..density..",
 
 
 # Using one-tailed one-sample  Wilcoxon test 
-wilcox.test(df_con$diff, mu = 0, alternative = "greater")
+wilcox.test(df_con$diff, mu = 0, alternative = "greater") #significant
 
 
 
 
 # Effect size 
-df_con %>%  wilcox_effsize(diff ~ 1, mu = 0, alternative = "greater") # small effect size
+df_con %>%  wilcox_effsize(diff ~ 1, mu = 0, alternative = "greater") # medium effect size
 
 
 
@@ -226,14 +237,6 @@ library(patchwork)
 ```
 
 
-Visualization
-```{r}
-
-
-
-
-
-```
 
 Hypothesis 4
 ```{r}
@@ -251,7 +254,7 @@ df_lab_nug %>%
 # Visualizing data
 bxp_lab_nug <- ggboxplot(
   df_lab_nug, x = "intervention", y = "diff", fill = "intervention",
-  ylab = "Mean difference score (%)", xlab = "Intervention", add = "jitter"
+  ylab = "Mean difference score", xlab = "Intervention", add = "jitter"
   )+
   ggtitle(" B) Comparing Nudging and Labeling")+
   theme_solarized()+
@@ -286,7 +289,13 @@ wilcox_effsize(diff ~ intervention, alternative = "greater", data = df_lab_nug)
 df_overall$intervention <- relevel(df_overall$intervention, ref = "inspiration")
 df_overall$vare_grp <- as.factor(df_overall$vare_grp)
 
-m1 <- lm(diff ~ intervention, data = df_overall)
+
+df <- df_overall
+
+#df <- df[-c(70:92), ]
+
+
+m1 <- lm(diff ~ intervention, data = df)
 
 summary(m1)
 
@@ -295,17 +304,12 @@ plot(m1)
 
 
 # Normality
-hist(df_overall$diff)
+hist(df$diff)
 
 
 
 plot(diff ~ intervention, data = df_overall)
 
-
-par(mfrow=c(2,2))
-
-
-plot(m1)
 
 
 
@@ -313,13 +317,13 @@ plot(m1)
 sjPlot::plot_model(m1, 
                    axis.labels=c("Nudging", "Labeling", "Intercept(Inspiration)"),
                    show.values=T, show.p=T, show.intercept = T,
-                   title="Effect of Intervention on Climate-friendly Products - Measured as Difference score (in %)")
+                   title="Effect of Intervention on Climate-friendly Products - Measured as Difference score")
 
 
 sjPlot::tab_model(m1, 
                   show.re.var= TRUE, 
                   pred.labels =c("(Intercept)", "Labeling", "Nudging"),
-                  dv.labels= "Effect of Intervention on Climate-friendly Products - Measured as Difference score (in %)")
+                  dv.labels= "Effect of Intervention on Climate-friendly Products - Measured as Difference score")
 ```
 
 
