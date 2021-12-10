@@ -24,10 +24,19 @@ library(sjPlot)
 library(sjmisc) 
 library(effects)
 library(sjstats) 
+library(ggthemes)
 ```
 
 ```{r}
 df_big_final <- read_csv("df_big_final.csv")
+
+
+df_w_3$oms_con <- "j"
+df_w_3[c(21, 23, 2, 12, 14 ), 15] <- c("7")
+df_w_3[c(17, 22), 15] <- c("5")
+df_w_3[c(4, 3, 6, 15, 7), 15] <- c("3")
+df_w_3[c(8, 10, 11, 9, 19, 1, 13, 16, 5, 18, 20), 15] <- c("2")
+
 
 
 
@@ -208,9 +217,45 @@ bxp_w_2
 
 ```{r}
 # Hypothesis 3
+
+
+
+
+# Data including the convenience bags numbers
+
+df_w_3$oms_con <- as.numeric(df_w_3$oms_con)
+df_w_3$oms_con <- df_w_3$oms_con + df_w_3$oms.x
+
+
+df_w_3$diff_con <- df_w_3$oms_con - df_w_3$oms.y
+
+df_w_3$diff_con_perc <- (df_w_3$oms_con - df_w_3$oms.y)/df_w_3$oms.y*100
+
+df_w_3$diff_con_perc <- round(df_w_3$diff_con_perc, digits = 1)
+
+# Data without the convenience bags
+
 df_w_3$diff_perc <- (df_w_3$oms.x - df_w_3$oms.y)/df_w_3$oms.y*100
 
 df_w_3$diff_perc <- round(df_w_3$diff_perc, digits = 1)
+
+
+df_con <- df_w_3[,c(1, 4, 8, 17)]
+df_con$intervention <- "convenience_bags"
+
+df_con <- df_con %>% 
+  rename(
+    diff_perc = diff_con_perc)
+
+
+df_try <- bind_rows(list(df_w_3, df_con), .id = "X1")
+
+
+
+df_try$intervention <- "inspiration"
+
+df_try$int_type <- "Inspiration"
+df_try[c(24:46), 18] <- c("Convenience_bag")
 
 
 
@@ -224,7 +269,12 @@ bxp_w_3 <- ggboxplot(
   ggtitle("Boxplot of Inspiration Intervention")+
   theme_solarized()
 
+
+
+
 bxp_w_3
+
+
 
 
 df_w_3 %>% 
@@ -269,15 +319,25 @@ library(patchwork)
 Visualization
 ```{r}
 
+df_try <- bind_rows(list(df_w_3, df_con), .id = "X1")
+
+df_overall$int_type <- NA
+
+df_overall$X1 <- as.character(df_overall$X1)
+
+df_overall <- bind_rows(df_overall, df_try, .id = "X1")
+
 df_overall <- rbind(df_w_1, df_w_2, df_w_3)
 
 df_overall$intervention <- as.factor(df_overall$intervention)
+df_overall$int_type <- as.factor(df_overall$int_type)
+
 
 df_overall %>%
   group_by(intervention) %>%
   summarise(mean_difference_score = mean(diff_perc, na.rm = T), se = sd(diff_perc, na.rm = T)/(sqrt(length(diff_perc)))) %>% 
-  ggplot(aes(intervention, mean_difference_score, fill = intervention)) +
-  geom_bar(stat = "summary") +
+  ggplot(aes(x = intervention, y = mean_difference_score, fill = int_type)) +
+  geom_bar(position = "stack", stat = "summary") +
   geom_errorbar(aes(ymin=mean_difference_score-se, ymax=mean_difference_score+se), width=.2,
                 position=position_dodge(.9))
 
@@ -300,9 +360,9 @@ df_lab_nug %>%
 # Visualizing data
 bxp_lab_nug <- ggboxplot(
   df_lab_nug, x = "intervention", y = "diff_perc", fill = "intervention",
-  ylab = "Difference (%)", xlab = "Intervention", add = "jitter"
+  ylab = "Mean difference score (%)", xlab = "Intervention", add = "jitter"
   )+
-  ggtitle("Comparing Nudging and Labeling")+
+  ggtitle(" B) Comparing Nudging and Labeling")+
   theme_solarized()+
   scale_fill_brewer(palette="Blues")
 
@@ -410,8 +470,8 @@ df_plot <- df_overall %>%
                 position=position_dodge(.9))+
   theme_solarized()+
   scale_fill_brewer(palette="Blues")+
-  labs(x = "Intervention", y = "Difference score in percentage")+
-  ggtitle("Intervention Effect on Purchase of Climate-friendly Products")
+  labs(x = "Intervention", y = "Mean difference score (%)")+
+  ggtitle("A) Intervention Effect on Purchase of Climate-friendly Products")
 
 
 df_plot + bxp_lab_nug
