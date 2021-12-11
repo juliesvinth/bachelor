@@ -100,7 +100,7 @@ bxp_w_1
 
 bxp_w_1_out
 
-df_w_1 %>% 
+df_w_1_out %>% 
   get_summary_stats(diff, type = "median_iqr")
 
 
@@ -110,18 +110,18 @@ ggqqplot(df_w_1, x = "diff") # Not normal
 ggqqplot(df_w_1_out, x = "diff") # Not normal
 
 
-gghistogram(df_w_1, x = "diff", y = "..density..", 
+gghistogram(df_w_1_out, x = "diff", y = "..density..", 
             fill = "steelblue",bins = 10, add_density = TRUE)
 
 
 # Using one-tailed one-sample  Wilcoxon test 
-wilcox.test(df_w_1$diff, mu = 0, alternative = "greater")
+wilcox.test(df_w_1_out$diff, mu = 0, alternative = "greater")
 
 
 
 
 # Effect size 
-df_w_1 %>%  wilcox_effsize(diff ~ 1, mu = 0, alternative = "greater") # small effect size
+df_w_1_out %>%  wilcox_effsize(diff ~ 1, mu = 0, alternative = "greater") # small effect size
 
 
 
@@ -148,31 +148,28 @@ bxp_w_2 <- ggboxplot(
 bxp_w_2
 
 df_w_2 %>% 
-  get_summary_stats(diff, type = "median_iqr")
+  get_summary_stats(diff, type = "mean_sd") 
 
 
 
 # Normality
 ggqqplot(df_w_2, x = "diff")
-df_w_2 %>% shapiro_test(diff) 
+df_w_2 %>% shapiro_test(diff) # Normal distribution
 
 
 gghistogram(df_w_2, x = "diff", y = "..density..", 
-            fill = "steelblue",bins = 4, add_density = TRUE)
+            fill = "steelblue",bins = 10, add_density = TRUE)
 
 
 # Using one-tailed one-sample  Wilcoxon test 
-wilcox.test(df_w_2$diff, mu = 0, alternative = "greater")
+t.test(df_w_2$diff, mu = 0, alternative = "greater")
 
 
 
 
 # Effect size 
-df_w_2 %>%  wilcox_effsize(diff ~ 1, mu = 0, alternative = "greater") # small effect size
 
-
-
-
+df_w_1 %>% cohens_d(diff ~ 1, mu = 0)
 
 bxp_w_2 
 
@@ -231,7 +228,7 @@ bxp_w_3
 
 library(patchwork)
 
-(bxp_w_1 /bxp_w_2 ) | (bxp_w_3/bxp_lab_nug)
+(bxp_w_1_out /bxp_w_2 ) | (bxp_w_3/bxp_lab_nug)
 
 
 ```
@@ -242,6 +239,8 @@ Hypothesis 4
 ```{r}
 
 df_lab_nug <- read_csv("df_lab_nug.csv")
+
+
 
 df_lab_nug$intervention <- as.factor(df_lab_nug$intervention)
 
@@ -286,13 +285,14 @@ wilcox_effsize(diff ~ intervention, alternative = "greater", data = df_lab_nug)
 # Does inspiration have a greater effect than the two other interventions
 
 # Relevel intervention - inspiration as baseline
-df_overall$intervention <- relevel(df_overall$intervention, ref = "inspiration")
-df_overall$vare_grp <- as.factor(df_overall$vare_grp)
+df$intervention <- as.factor(df$intervention)
+df$intervention <- relevel(df$intervention, ref = "inspiration")
 
 
-df <- df_overall
 
-#df <- df[-c(70:92), ]
+#df <- df_overall
+
+
 
 
 m1 <- lm(diff ~ intervention, data = df)
@@ -308,7 +308,7 @@ hist(df$diff)
 
 
 
-plot(diff ~ intervention, data = df_overall)
+plot(diff ~ intervention, data = df)
 
 
 
@@ -350,17 +350,22 @@ wilcox.test(df_w_3$diff, mu = 0, alternative = "greater")
 install.packages('ggthemes', dependencies = TRUE)
 library(ggthemes)
 
-
+df_overall$mean <- round(df_overall$mean, digits = 2)
+df$mean <- round(df$mean, digits = 2) # Only convenience bags data in inspiration
 
 df_plot <- df_overall %>% 
   ggplot(aes(intervention, mean, fill = int_type, na.rm = T)) +
   geom_bar(position = "dodge", stat = "summary")+
-  geom_errorbar(aes(ymin=mean-se, ymax=mean+se), width=.2,
+  geom_errorbar(aes(ymin=mean-se, ymax=mean+se), width=.1,
                 position=position_dodge(.9))+
   theme_solarized()+
-  scale_fill_brewer(palette="Blues")+
+  geom_text(aes(label = mean), vjust = 1.0, position = position_dodge(.9), colour = "black"
+  )+
   labs(x = "Intervention", y = "Mean difference score")+
-  ggtitle("A) Intervention Effect on Purchase of Climate-friendly Products")
+  ggtitle("A) Intervention Effect on Purchase of Climate-friendly Products")+
+  scale_fill_discrete(name = "Intervention Type")
+
+df_plot
 
 df_plot + bxp_lab_nug
 
