@@ -28,14 +28,17 @@ library(ggthemes)
 ```
 
 ```{r}
-df_big_final <- read_csv("df_big_final.csv")
+
+
+df_overall <- read_csv("df_overall.csv") # containing all interventions with both inspiration versions
+df <- read_csv("df.csv") #containing all interventions minus inspiration products out in the store 
 
 
 
 ```
 
 
-Model making
+
 ```{r}
 
 # Load in data
@@ -96,9 +99,9 @@ bxp_w_1_out <- ggboxplot(
   ggtitle("Boxplot of Label Intervention")+
   theme_solarized()
 
-bxp_w_1
+bxp_w_1 # one huge outlier is heavily influencing the data, thus removed
 
-bxp_w_1_out
+bxp_w_1_out 
 
 df_w_1_out %>% 
   get_summary_stats(diff, type = "median_iqr")
@@ -135,8 +138,6 @@ df_w_1_out %>%  wilcox_effsize(diff ~ 1, mu = 0, alternative = "greater") # smal
 
 
 
-
-
 # Visualizing
 bxp_w_2 <- ggboxplot(
   df_w_2$diff, width = 0.5, add = c("mean", "jitter"), 
@@ -161,7 +162,7 @@ gghistogram(df_w_2, x = "diff", y = "..density..",
             fill = "steelblue",bins = 10, add_density = TRUE)
 
 
-# Using one-tailed one-sample  Wilcoxon test 
+# Using one-tailed one-sample t-test 
 t.test(df_w_2$diff, mu = 0, alternative = "greater")
 
 
@@ -313,45 +314,78 @@ plot(diff ~ intervention, data = df)
 
 
 
-
+# Plotting the beta values
 sjPlot::plot_model(m1, 
                    axis.labels=c("Nudging", "Labeling", "Intercept(Inspiration)"),
                    show.values=T, show.p=T, show.intercept = T,
-                   title="Effect of Intervention on Climate-friendly Products - Measured as Difference score")
+                   title="Effect of Intervention on Climate-friendly Products - Measured in Difference score")
 
 
+# Table of model summary
 sjPlot::tab_model(m1, 
-                  show.re.var= TRUE, 
+                  show.re.var= TRUE, show.se = T,
                   pred.labels =c("(Intercept)", "Labeling", "Nudging"),
                   dv.labels= "Effect of Intervention on Climate-friendly Products - Measured as Difference score")
+
+summary(m1)
 ```
 
 
-# T-test
-```{r}
-# Hypothesis 1
 
-
-wilcox.test(df_w_1$diff, mu = 0, alternative = "greater")
-
-# Hypothesis 2
-wilcox.test(df_w_2$diff, mu = 0, alternative = "greater")
-
-# Hypothesis 3
-wilcox.test(df_w_3$diff, mu = 0, alternative = "greater")
-
-
-```
 
 
 ```{r}
 
 
-install.packages('ggthemes', dependencies = TRUE)
-library(ggthemes)
 
+# Caulculating mean
+df_w_1_out$mean <- mean(df_w_1_out$diff, na.rm = T)
+df_w_2$mean <- mean(df_w_2$diff, na.rm = T)
+df_w_3$mean <- mean(df_w_3$diff, na.rm = T)
+df_con$mean <- mean(df_con$diff, na.rm = T)
+
+# Calculating standard error 
+df_w_1_out$se <- std.error(df_w_1_out$diff)
+df_w_2$se <- std.error(df_w_2$diff, na.rm = T)
+df_w_3$se <- std.error(df_w_3$diff, na.rm = T)
+df_con$se <- std.error(df_con$diff, na.rm = T)
+
+# Mean column in df_overall
+df_overall[c(1:61), 15] <- df_w_1_out$mean
+df_overall[c(62:68), 15] <- df_w_2$mean
+df_overall[c(69:91), 15] <- df_w_3$mean
+df_overall[c(92:114), 15] <- df_con$mean
+
+# Standard error column in df_overall
+df_overall[c(1:61), 14] <- df_w_1_out$se
+df_overall[c(62:68), 14] <- df_w_2$se
+df_overall[c(69:91), 14] <- df_w_3$se
+df_overall[c(92:114), 14] <- df_con$se
+
+
+# Mean column in df
+df[c(1:61), 15] <- df_w_1_out$mean
+df[c(62:68), 15] <- df_w_2$mean
+df[c(69:91), 15] <- df_con$mean
+
+
+#standard error column in df
+df[c(1:61), 14] <- df_w_1_out$se
+df[c(62:68), 14] <- df_w_2$se
+df[c(69:91), 14] <- df_con$se
+
+
+# Round decimals for df_overall
 df_overall$mean <- round(df_overall$mean, digits = 2)
+df_overall$se <- round(df_overall$se, digits = 2)
+
+# Round decimals for df
 df$mean <- round(df$mean, digits = 2) # Only convenience bags data in inspiration
+df$se <- round(df$se, digits = 2)
+
+
+
+# Plot of the three interventions
 
 df_plot <- df_overall %>% 
   ggplot(aes(intervention, mean, fill = int_type, na.rm = T)) +

@@ -67,49 +67,26 @@
 "66",67,1,7340011487906,"<d8>KO <c4>NGLAMARK KIK<c6>RTER 380/230 G","chickpea","nudge",49,2,"canned",62,-13,-21,"nudging",18.29,7.14
 "67",68,1,7340191112582,"<d8>ko <c4>M Broccoli 400g","broccoli","nudge",10,2,"vegetables",16,-6,-37.5,"nudging",18.29,7.14
 "68",69,1,7340191112711,"Coop HK spinat 1kg","spinage","nudge",10,2,"vegetables",10,0,0,"nudging",18.29,7.14
-"69",70,2,4000339697908,"PHILADELPHIA NATUREL","j","inspiration",18,3,"cheese",21,-3,NA,"inspiration",6.2,4.78
-"70",71,2,5700380203767,"<d8>KO Chili l<f8>se R<f8>de","j","inspiration",142,3,"vegetable",101,41,NA,"inspiration",6.2,4.78
-"71",72,2,5700381737605,"<d8>KO Citroner l<f8>se","j","inspiration",60,3,"vegetable",111,-51,NA,"inspiration",6.2,4.78
-"72",73,2,5700381760627,"<d8>KO <c4>M KORIANDER AFS","j","inspiration",17,3,"herbes",24,-7,NA,"inspiration",6.2,4.78
-"73",74,2,5700382338535,"<d8>ko Spinat 200 gr","j","inspiration",89,3,"vegetable",80,9,NA,"inspiration",6.2,4.78
-"74",75,2,5700382599486,"<c4>ngla <f8>ko ingef<e6>r","j","inspiration",50,3,"herbes",43,7,NA,"inspiration",6.2,4.78
-"75",76,2,5700382650019,"COOP SESAMFR<d8> 150 G","j","inspiration",8,3,"boullion/seed",10,-2,NA,"inspiration",6.2,4.78
-"76",77,2,5700382939183,"<d8>KO <c4>M TIMIAN AFSK","j","inspiration",14,3,"herbes",13,1,NA,"inspiration",6.2,4.78
-"77",78,2,5700383118402,"<c4>ngla sm<e5> spr<f8>de gul","j","inspiration",263,3,"vegetable",153,110,NA,"inspiration",6.2,4.78
-"78",79,2,5700383270889,"<c4>ngla Snackpeber","j","inspiration",49,3,"vegetable",40,9,NA,"inspiration",6.2,4.78
-"79",80,2,5700383696054,"<d8>ko <c4>M Champ i skive","j","inspiration",32,3,"vegetable",45,-13,NA,"inspiration",6.2,4.78
-"80",81,2,5700383908812,"Portobello 300 gr","j","inspiration",9,3,"vegetable",17,-8,NA,"inspiration",6.2,4.78
-"81",82,2,5700384318719,"Hvidl<f8>g 200 gr","j","inspiration",79,3,"vegetable",56,23,NA,"inspiration",6.2,4.78
-"82",83,2,5700384581724,"<d8>KO PERLEBYG <c2>NGLEMARK 500 G","j","inspiration",0,3,"pasta_stuff",1,-1,NA,"inspiration",6.2,4.78
-"83",84,2,5750006343148,"<d8>KO <c4>M bladselleri","j","inspiration",56,3,"vegetable",54,2,NA,"inspiration",6.2,4.78
-"84",85,2,5750006345555,"<d8>KO <c4>M l<f8>g 1 Kg","j","inspiration",102,3,"vegetable",89,13,NA,"inspiration",6.2,4.78
-"85",86,2,7340011315179,"<d8>KO SPAGHETTI FK <c4>NGLAM","j","inspiration",5,3,"pasta_stuff",10,-5,NA,"inspiration",6.2,4.78
-"86",87,2,7340011476054,"COOP HAKKEDE TOMATER 400 G","j","inspiration",40,3,"canned",26,14,NA,"inspiration",6.2,4.78
-"87",88,2,7340011487906,"<d8>KO <c4>NGLAMARK KIK<c6>RTER 380/230 G","j","inspiration",21,3,"canned",66,-45,NA,"inspiration",6.2,4.78
-"88",89,2,7340011488064,"<d8>KO <c4>NGLAMARK KNUST CHILI 23 G","j","inspiration",8,3,"spices",9,-1,NA,"inspiration",6.2,4.78
-"89",90,2,7340191101029,"COOP SPIDSKOMMEN 40 G","j","inspiration",13,3,"spices",4,9,NA,"inspiration",6.2,4.78
-"90",91,2,8001868007509,"PECORINO ROMANO 160G","j","inspiration",9,3,"cheese",6,3,NA,"inspiration",6.2,4.78
-"91",92,2,8015185002161,"QUEEN GR<d8>NTSAGS BOUILLON 200 G","j","inspiration",13,3,"boullion/seed",8,5,NA,"inspiration",6.2,4.78
-"92",93,2,NA,NA,NA,"inspiration",NA,NA,NA,21,-1,NA,"convenience_bags",6.21,8.35
-"93",94,2,NA,NA,NA,"inspiration",NA,NA,NA,101,48,NA,"convenience_bags",6.21,8.35
-"94",95,2,NA,NA,NA,"inspiration",NA,NA,NA,111,-48,NA,"convenience_bags",6.21,8.35
-"95",96,2,NA,NA,NA,"inspiration",NA,NA,NA,24,-4,NA,"convenience_bags",6.21,8.35
-"96",97,2,NA,NA,NA,"inspiration",NA,NA,NA,80,11,NA,"convenience_bags",6.21,8.35
-"97",98,2,NA,NA,NA,"inspiration",NA,NA,NA,43,10,NA,"convenience_bags",6.21,8.35
-"98",99,2,NA,NA,NA,"inspiration",NA,NA,NA,10,1,NA,"convenience_bags",6.21,8.35
-"99",100,2,NA,NA,NA,"inspiration",NA,NA,NA,13,3,NA,"convenience_bags",6.21,8.35
-"100",101,2,NA,NA,NA,"inspiration",NA,NA,NA,153,112,NA,"convenience_bags",6.21,8.35
-"101",102,2,NA,NA,NA,"inspiration",NA,NA,NA,40,11,NA,"convenience_bags",6.21,8.35
-"102",103,2,NA,NA,NA,"inspiration",NA,NA,NA,45,-11,NA,"convenience_bags",6.21,8.35
-"103",104,2,NA,NA,NA,"inspiration",NA,NA,NA,17,-1,NA,"convenience_bags",6.21,8.35
-"104",105,2,NA,NA,NA,"inspiration",NA,NA,NA,56,25,NA,"convenience_bags",6.21,8.35
-"105",106,2,NA,NA,NA,"inspiration",NA,NA,NA,1,6,NA,"convenience_bags",6.21,8.35
-"106",107,2,NA,NA,NA,"inspiration",NA,NA,NA,54,5,NA,"convenience_bags",6.21,8.35
-"107",108,2,NA,NA,NA,"inspiration",NA,NA,NA,89,15,NA,"convenience_bags",6.21,8.35
-"108",109,2,NA,NA,NA,"inspiration",NA,NA,NA,10,0,NA,"convenience_bags",6.21,8.35
-"109",110,2,NA,NA,NA,"inspiration",NA,NA,NA,26,16,NA,"convenience_bags",6.21,8.35
-"110",111,2,NA,NA,NA,"inspiration",NA,NA,NA,66,-43,NA,"convenience_bags",6.21,8.35
-"111",112,2,NA,NA,NA,"inspiration",NA,NA,NA,9,1,NA,"convenience_bags",6.21,8.35
-"112",113,2,NA,NA,NA,"inspiration",NA,NA,NA,4,16,NA,"convenience_bags",6.21,8.35
-"113",114,2,NA,NA,NA,"inspiration",NA,NA,NA,6,8,NA,"convenience_bags",6.21,8.35
-"114",115,2,NA,NA,NA,"inspiration",NA,NA,NA,8,12,NA,"convenience_bags",6.21,8.35
+"69",93,2,NA,NA,NA,"inspiration",NA,NA,NA,21,-1,NA,"convenience_bags",6.21,8.35
+"70",94,2,NA,NA,NA,"inspiration",NA,NA,NA,101,48,NA,"convenience_bags",6.21,8.35
+"71",95,2,NA,NA,NA,"inspiration",NA,NA,NA,111,-48,NA,"convenience_bags",6.21,8.35
+"72",96,2,NA,NA,NA,"inspiration",NA,NA,NA,24,-4,NA,"convenience_bags",6.21,8.35
+"73",97,2,NA,NA,NA,"inspiration",NA,NA,NA,80,11,NA,"convenience_bags",6.21,8.35
+"74",98,2,NA,NA,NA,"inspiration",NA,NA,NA,43,10,NA,"convenience_bags",6.21,8.35
+"75",99,2,NA,NA,NA,"inspiration",NA,NA,NA,10,1,NA,"convenience_bags",6.21,8.35
+"76",100,2,NA,NA,NA,"inspiration",NA,NA,NA,13,3,NA,"convenience_bags",6.21,8.35
+"77",101,2,NA,NA,NA,"inspiration",NA,NA,NA,153,112,NA,"convenience_bags",6.21,8.35
+"78",102,2,NA,NA,NA,"inspiration",NA,NA,NA,40,11,NA,"convenience_bags",6.21,8.35
+"79",103,2,NA,NA,NA,"inspiration",NA,NA,NA,45,-11,NA,"convenience_bags",6.21,8.35
+"80",104,2,NA,NA,NA,"inspiration",NA,NA,NA,17,-1,NA,"convenience_bags",6.21,8.35
+"81",105,2,NA,NA,NA,"inspiration",NA,NA,NA,56,25,NA,"convenience_bags",6.21,8.35
+"82",106,2,NA,NA,NA,"inspiration",NA,NA,NA,1,6,NA,"convenience_bags",6.21,8.35
+"83",107,2,NA,NA,NA,"inspiration",NA,NA,NA,54,5,NA,"convenience_bags",6.21,8.35
+"84",108,2,NA,NA,NA,"inspiration",NA,NA,NA,89,15,NA,"convenience_bags",6.21,8.35
+"85",109,2,NA,NA,NA,"inspiration",NA,NA,NA,10,0,NA,"convenience_bags",6.21,8.35
+"86",110,2,NA,NA,NA,"inspiration",NA,NA,NA,26,16,NA,"convenience_bags",6.21,8.35
+"87",111,2,NA,NA,NA,"inspiration",NA,NA,NA,66,-43,NA,"convenience_bags",6.21,8.35
+"88",112,2,NA,NA,NA,"inspiration",NA,NA,NA,9,1,NA,"convenience_bags",6.21,8.35
+"89",113,2,NA,NA,NA,"inspiration",NA,NA,NA,4,16,NA,"convenience_bags",6.21,8.35
+"90",114,2,NA,NA,NA,"inspiration",NA,NA,NA,6,8,NA,"convenience_bags",6.21,8.35
+"91",115,2,NA,NA,NA,"inspiration",NA,NA,NA,8,12,NA,"convenience_bags",6.21,8.35

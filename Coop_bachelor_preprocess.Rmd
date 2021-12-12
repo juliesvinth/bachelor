@@ -32,7 +32,6 @@ nudge  <- read_delim("Kopi af salgstals klimaprojekt 14.10 - 20.10.csv",
 nudge <- nudge[-c(1, 2, 3, 12), ]
 
 
-### Der skal laves en kolonne, der inddeler dem i varegrupper
 
 # Removing three first rows
 df <- df[-c(1, 2, 3), ]
