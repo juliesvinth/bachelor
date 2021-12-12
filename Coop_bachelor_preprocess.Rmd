@@ -29,7 +29,7 @@ View(df)
 nudge  <- read_delim("Kopi af salgstals klimaprojekt 14.10 - 20.10.csv", 
     ";", escape_double = FALSE, trim_ws = TRUE)
 
-nudge <- nudge[-c(1, 2, 3, 12), ]
+nudge <- nudge[-c(1, 2, 3, 12),]
 
 
 
