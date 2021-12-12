@@ -1,8 +1,8 @@
-"","X1","X1_2","X1_1","uge","vare","X3","prod_cat","intervention","oms.x","week","vare_grp","oms.y","diff","se"
-"1",1,130,1,1,5700382516469,"Courgette","squash","nudge",149,2,"vegetables",62,87,18.2879462923489
-"2",2,131,3,1,5700383878061,"San Marzanotomat","tomato","nudge",58,2,"vegetables",119,-61,18.2879462923489
-"3",3,132,4,1,5750006326691,"<c4>ngla Broccoli","broccoli","nudge",93,2,"vegetables",40,53,18.2879462923489
-"4",4,133,5,1,7340011481782,"<d8>ko <c4>M HK Spinat","spinage","nudge",8,2,"vegetables",18,-10,18.2879462923489
-"5",5,134,6,1,7340011487906,"<d8>KO <c4>NGLAMARK KIK<c6>RTER 380/230 G","chickpea","nudge",49,2,"canned",62,-13,18.2879462923489
-"6",6,135,7,1,7340191112582,"<d8>ko <c4>M Broccoli 400g","broccoli","nudge",10,2,"vegetables",16,-6,18.2879462923489
-"7",7,136,8,1,7340191112711,"Coop HK spinat 1kg","spinage","nudge",10,2,"vegetables",10,0,18.2879462923489
+"","X1","X1_2","X1_1","uge","vare","X3","prod_cat","intervention","oms.x","week","vare_grp","oms.y","diff","se","mean"
+"1",1,130,1,1,5700382516469,"Courgette","squash","nudge",149,2,"vegetables",62,87,18.2879462923489,7.14285714285714
+"2",2,131,3,1,5700383878061,"San Marzanotomat","tomato","nudge",58,2,"vegetables",119,-61,18.2879462923489,7.14285714285714
+"3",3,132,4,1,5750006326691,"<c4>ngla Broccoli","broccoli","nudge",93,2,"vegetables",40,53,18.2879462923489,7.14285714285714
+"4",4,133,5,1,7340011481782,"<d8>ko <c4>M HK Spinat","spinage","nudge",8,2,"vegetables",18,-10,18.2879462923489,7.14285714285714
+"5",5,134,6,1,7340011487906,"<d8>KO <c4>NGLAMARK KIK<c6>RTER 380/230 G","chickpea","nudge",49,2,"canned",62,-13,18.2879462923489,7.14285714285714
+"6",6,135,7,1,7340191112582,"<d8>ko <c4>M Broccoli 400g","broccoli","nudge",10,2,"vegetables",16,-6,18.2879462923489,7.14285714285714
+"7",7,136,8,1,7340191112711,"Coop HK spinat 1kg","spinage","nudge",10,2,"vegetables",10,0,18.2879462923489,7.14285714285714
