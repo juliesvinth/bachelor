@@ -33,7 +33,6 @@ library(ggthemes)
 df_overall <- read_csv("df_overall.csv") # containing all interventions with both inspiration versions
 df <- read_csv("df.csv") #containing all interventions minus inspiration products out in the store 
 
- 
 
 ```
 
