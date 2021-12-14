@@ -33,7 +33,8 @@ library(plotrix)
 
 
 df_overall <- read_csv("df_overall.csv") # containing all interventions with both inspiration versions
-df <- read_csv("df.csv") #containing all interventions minus inspiration products out in the store 
+
+
 
 
 ```
@@ -184,7 +185,7 @@ bxp_w_2
 
 # Visualizing
 bxp_w_3 <- ggboxplot(
-  df_con$diff, width = 0.5, add = c("mean", "jitter"), 
+  df_w_3$diff_con, width = 0.5, add = c("mean", "jitter"), 
   ylab = "Difference", xlab = "Inspiration"
   )+
   ggtitle("Boxplot of Inspiration Intervention")+
@@ -198,81 +199,67 @@ bxp_w_3
 
 
 
-df_con %>% 
-  get_summary_stats(diff, type = "median_iqr")
+df_w_3 %>% 
+  get_summary_stats(diff_con, type = "median_iqr")
 
 
 # Normality
-ggqqplot(df_con, x = "diff")
+ggqqplot(df_w_3, x = "diff_con")
 
-df_con %>% shapiro_test(diff) # Assuming no normal distribution
+df_w_3 %>% shapiro_test(diff_con) # Assuming no normal distribution
 
 
-gghistogram(df_con, x = "diff", y = "..density..", 
+gghistogram(df_w_3, x = "diff_con", y = "..density..", 
             fill = "steelblue",bins = 10, add_density = TRUE)
 
 
 # Using one-tailed one-sample  Wilcoxon test 
-wilcox.test(df_con$diff, mu = 0, alternative = "greater") #significant
+wilcox.test(df_w_3$diff_con, mu = 0, alternative = "greater") #significant
 
 
 
 
 # Effect size 
-df_con %>%  wilcox_effsize(diff ~ 1, mu = 0, alternative = "greater") # medium effect size
+df_w_3 %>%  wilcox_effsize(diff_con ~ 1, mu = 0, alternative = "greater") # medium effect size
 
 
 
 bxp_w_3
 
-
-# Looking at inspiration without products out in the store 
-
-df_only_con <- df_w_con
-
-df_only_con$mean <- mean(df_only_con$diff, na.rm = T)
-df_only_con$se <- std.error(df_only_con$diff, na.rm = T)
-
-df_only_con$diff <- NULL # deleting original diff column
-
-df_only_con$diff <- df_only_con$oms_con
+```
 
 
-
-sum(df_only_con$oms.y, na.rm = T) # 987
-(3.57/987)*100 # 0.36% change
-
-df_only_con$overall_inc <- as.character(df_only_con$overall_inc)
-df_only_con$overall_inc <- "0.36 %"
-
-df_only_con$mean <- round(df_only_con$mean, digits = 2)
-df_only_con$se <- round(df_only_con$se, digits = 2)
+How much does the data from the convenience bags add to the overall sale of the products?
+```{r}
 
 
-
-df_only_con %>% 
-  get_summary_stats(diff, type = "median_iqr")
+df_insp <- read_csv("df_insp.csv")
 
 
-# Normality
-ggqqplot(df_only_con, x = "diff")
-
-df_only_con %>% shapiro_test(diff) # Assuming no normal distribution
-
-
-gghistogram(df_only_con, x = "diff", y = "..density..", 
-            fill = "steelblue",bins = 10, add_density = TRUE)
-
-
-# Using one-tailed one-sample  Wilcoxon test 
-wilcox.test(df_only_con$diff, mu = 0, alternative = "greater") #significant
-
-
-
-# Effect size 
-df_only_con %>%  wilcox_effsize(diff ~ 1, mu = 0, alternative = "greater") # large effect size
-
-
+plot_inspiration <- ggplot(df_insp, aes(x = intervention, y = oms_con_total, fill = intervention)) + 
+  geom_bar(stat = "identity")+
+  theme_solarized()+
+  labs(x = "Intervention", y = "Number of sold products (in percentage)")+
+  ggtitle("C) Convenience bags compared to overall sale")+
+  scale_fill_discrete(name = "Intervention Type")+
+  geom_label(
+    label=" 82, (7 %)", 
+    x=1,
+    y=40,
+    label.size = 0.2,
+    show.legend = F,
+    fill = NA
+  )+
+    geom_label(
+    label=" 1197, (100%)", 
+    x=2,
+    y=1100,
+    label.size = 0.2,
+    show.legend = F,
+    fill = NA)
+ 
+ 
+plot_inspiration
 
 ```
 
@@ -338,18 +325,9 @@ wilcox_effsize(diff ~ intervention, alternative = "greater", data = df_lab_nug)
 ```{r}
 # Does inspiration have a greater effect than the two other interventions
 
-# Relevel intervention - inspiration as baseline
-df$intervention <- as.factor(df$intervention)
-df$intervention <- relevel(df$intervention, ref = "inspiration")
 
 
-
-#df <- df_overall
-
-
-
-
-m1 <- lm(diff ~ intervention, data = df)
+m1 <- lm(diff ~ intervention, data = df_overall)
 
 summary(m1)
 
@@ -358,11 +336,10 @@ plot(m1)
 
 
 # Normality
-hist(df$diff)
+hist(df_overall$diff)
 
 
 
-plot(diff ~ intervention, data = df)
 
 
 
@@ -383,47 +360,6 @@ sjPlot::tab_model(m1,
 summary(m1)
 
 
-# Creating a model excluding products out in the store in the inspriation intervention
-
-df_explorative <- bind_rows(df_w_1_out, df_w_2, df_only_con)
-
-df_explorative$mean <- round(df_explorative$mean, digits = 2)
-df_explorative$se <- round(df_explorative$se, digits = 2)
-
-m2 <- lm(diff ~ intervention, data = df_explorative)
-
-
-summary(m2)
-
-
-
-explorative_plot <- df_explorative %>% 
-  ggplot(aes(intervention, mean, fill = intervention, na.rm = T)) +
-  geom_bar(stat = "summary")+
-  geom_errorbar(aes(ymin=mean-se, ymax=mean+se), width=.1,
-                position=position_dodge(.9))+
-  theme_solarized()+
-  geom_text(aes(label = paste("",overall_inc, ", (", mean,")"), vjust = -0.4), , colour = "black", position = position_dodge(.9) )+
-  labs(x = "Intervention", y = "Effect of interventions in % (absolute numbers)")+
-  ggtitle("A) Intervention Effect on Purchase of Climate-friendly Products")+
-  scale_fill_discrete(name = "Intervention Type")
-
-
-explorative_plot
-
-
-
-# Table of model summary for m2
-sjPlot::tab_model(m2, 
-                  show.re.var= TRUE, show.se = T,
-                  pred.labels =c("(Intercept)", "Labeling", "Nudging"),
-                  dv.labels= "Effect of Intervention on Climate-friendly Products - Measured as Difference score")
-
-# Plotting the beta values for m2
-sjPlot::plot_model(m2, 
-                   axis.labels=c("Nudging", "Labeling", "Intercept(Inspiration)"),
-                   show.values=T, show.p=T, show.intercept = T,
-                   title="Effect of Intervention on Climate-friendly Products - Measured in Difference score")
 ```
 
 
@@ -450,34 +386,20 @@ df_con$se <- std.error(df_con$diff, na.rm = T)
 df_overall[c(1:61), 15] <- df_w_1_out$mean
 df_overall[c(62:68), 15] <- df_w_2$mean
 df_overall[c(69:91), 15] <- df_w_3$mean
-df_overall[c(92:114), 15] <- df_con$mean
+
 
 # Standard error column in df_overall
 df_overall[c(1:61), 14] <- df_w_1_out$se
 df_overall[c(62:68), 14] <- df_w_2$se
 df_overall[c(69:91), 14] <- df_w_3$se
-df_overall[c(92:114), 14] <- df_con$se
 
 
-# Mean column in df
-df[c(1:61), 15] <- df_w_1_out$mean
-df[c(62:68), 15] <- df_w_2$mean
-df[c(69:91), 15] <- df_con$mean
-
-
-#standard error column in df
-df[c(1:61), 14] <- df_w_1_out$se
-df[c(62:68), 14] <- df_w_2$se
-df[c(69:91), 14] <- df_con$se
 
 
 # Round decimals for df_overall
 df_overall$mean <- round(df_overall$mean, digits = 2)
 df_overall$se <- round(df_overall$se, digits = 2)
 
-# Round decimals for df
-df$mean <- round(df$mean, digits = 2) # Only convenience bags data in inspiration
-df$se <- round(df$se, digits = 2)
 
 
 
@@ -513,49 +435,22 @@ sum(df_w_3$oms.y) # 987
 df_w_3$overall_inc <- as.character(df_w_3$overall_inc)
 df_w_3$overall_inc <- "0.85 %"
 
-sum(df_w_con$oms.y) # 987
-(4.78/987)*100 # 0.48%
-
-df_w_con$overall_inc <- as.character(df_w_con$overall_inc)
-df_w_con$overall_inc <- "0.48 %"
 
 df_overall$overall_inc <- "J"
 
 df_overall[c(1:61), 17] <- df_w_1_out$overall_inc
 df_overall[c(62:68), 17] <- df_w_2$overall_inc
 df_overall[c(69:91), 17] <- df_w_3$overall_inc
-df_overall[c(92:114), 17] <- df_w_con$overall_inc
-
-
-```
-
-Visualizing 
-```{r}
-
-# Plot of the three interventions
-
-df_plot <- df_overall %>% 
-  ggplot(aes(intervention, mean, fill = int_type, na.rm = T)) +
-  geom_bar(position = "dodge", stat = "summary")+
-  geom_errorbar(aes(ymin=mean-se, ymax=mean+se), width=.1,
-                position=position_dodge(.9))+
-  theme_solarized()+
-  geom_text(aes(label = paste("",overall_inc, ", (", mean,")"), vjust = -0.4), , colour = "black", position = position_dodge(.9) )+
-  labs(x = "Intervention", y = "Effect of interventions in % (absolute numbers)")+
-  ggtitle("A) Intervention Effect on Purchase of Climate-friendly Products")+
-  scale_fill_discrete(name = "Intervention Type")
 
 
 
-df_plot
-
-df_plot+ bxp_lab_nug
 ```
 
 Explorative plot
 ```{r}
 
-df_overall[c(69:91), 12] <- df_w_3$diff_con " Difference score for numbers entailing supermarket and bags"
+df_overall[c(69:91), 8] <- df_w_3$oms_con_total # Total amount of sold products included supermarket products
+df_overall[c(69:91), 12] <- df_w_3$diff_con 
 df_overall[c(69:91), 14] <- "Store + Convenience bags"
 df_overall[c(69:91), 16] <- mean(df_w_3$diff_con) # Mean
 df_overall[c(69:91), 15] <- std.error(df_w_3$diff_con) # Standard error
@@ -564,30 +459,19 @@ df_overall$mean <- round(df_overall$mean, digits = 2)
 df_overall$se <- round(df_overall$se, digits = 2)
 
 
-sum(df_w_3$oms_con_total) # 1179
-(8.35/1179)*100 # 0.71%
+sum(df_w_3$oms.y) # 987
+(8.35/987)*100 # 0.85%
 
-df_overall[c(69:91), 17] <- "0.71 %"
-
-
-df_overall[c(92:114), 12] <- df_w_con$oms_con
-df_overall[c(92:114), 14] <- "Convenience bags"
-df_overall[c(92:114), 16] <- mean(df_w_con$oms_con) # Mean
-df_overall[c(92:114), 15] <- std.error(df_w_con$oms_con) # Standard error
-
-df_overall$mean <- round(df_overall$mean, digits = 2)
-df_overall$se <- round(df_overall$se, digits = 2)
-
-sum(df_w_3$oms_con_total) # 1179
-(3.57/1179)*100 # 0.30%
+df_overall[c(69:91), 17] <- "0.85 %"
 
 
 
+# Plot containing the three interventions 
 
 
 df_plot_1 <- df_overall %>% 
   ggplot(aes(intervention, mean, fill = int_type, na.rm = T)) +
-  geom_bar(position = "dodge", stat = "summary")+
+  geom_bar(stat = "summary")+
   geom_errorbar(aes(ymin=mean-se, ymax=mean+se), width=.1,
                 position=position_dodge(.9))+
   theme_solarized()+
@@ -597,6 +481,8 @@ df_plot_1 <- df_overall %>%
   scale_fill_discrete(name = "Intervention Type")
 
 df_plot_1
+
+df_plot_1 + bxp_lab_nug/plot_inspiration
 
 ```
 
