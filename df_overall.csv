@@ -1,115 +1,92 @@
-"","X1","uge","vare","X3","prod_cat","intervention","oms.x","week","vare_grp","oms.y","diff","diff_perc","int_type","se","mean"
-"1",1,1,57095370,"KILDEV<c6>LD 50CL","water","label",46,1,"water",37,9,24.3,"labeling",5.03,-8.78
-"2",2,1,5700380222096,"R<f8>dbeder 1,5 kg.","beats","label",5,1,"vegetables",7,-2,-28.6,"labeling",5.03,-8.78
-"3",3,1,5700380268926,"<d8>KO <c4>M SPIDSK<c5>L","cale","label",39,1,"vegetables",199,-160,-80.4,"labeling",5.03,-8.78
-"4",4,1,5700380269572,"L<f8>g 1 kg 40-60 mm","onion","label",87,1,"vegetables",83,4,4.8,"labeling",5.03,-8.78
-"5",5,1,5700380394816,"Kart Lammefjord 1,5","potato","label",28,1,"vegetables",52,-24,-46.2,"labeling",5.03,-8.78
-"6",6,1,5700380806210,"Knoldselleri","celeriac","label",15,1,"vegetables",16,-1,-6.2,"labeling",5.03,-8.78
-"7",7,1,5700380988244,"Hvidk<e5>l 1000-1800 gr","cale","label",9,1,"vegetables",NA,NA,NA,"labeling",5.03,-8.78
-"8",8,1,5700381206774,"<d8>ko <c4>M porrer 1 stk","leek","label",70,1,"vegetables",84,-14,-16.7,"labeling",5.03,-8.78
-"9",9,1,5700381232315,"<d8>KO <c4>M KART SM<c5>","potato","label",43,1,"vegetables",34,9,26.5,"labeling",5.03,-8.78
-"10",10,1,5700381563587,"COOP DANSKVAND 2L","water","label",60,1,"water",66,-6,-9.1,"labeling",5.03,-8.78
-"11",11,1,5700381660255,"<c4>ngla <f8>ko gr<f8>nk<e5>l","cale","label",14,1,"vegetables",10,4,40,"labeling",5.03,-8.78
-"12",13,1,5700381757511,"<c4>ngla <f8>ko Blomk<e5>l","cale","label",5,1,"vegetables",12,-7,-58.3,"labeling",5.03,-8.78
-"13",14,1,5700381768852,"SF HINDB<c6>R 170 g.","berries","label",54,1,"fruit",68,-14,-20.6,"labeling",5.03,-8.78
-"14",15,1,5700381779827,"Porrer","leek","label",88,1,"vegetables",82,6,7.3,"labeling",5.03,-8.78
-"15",16,1,5700381884897,"<d8>KO <c4>NGLAMARK HVEDEMEL DK 2 KG","flour","label",31,1,"bread/flour",19,12,63.2,"labeling",5.03,-8.78
-"16",17,1,5700382004812,"<d8>ko <c4>M Portobello","mushrooms","label",9,1,"vegetables",12,-3,-25,"labeling",5.03,-8.78
-"17",18,1,5700382039487,"P<e6>rer, store 6stk.DK","pear","label",29,1,"fruit",109,-80,-73.4,"labeling",5.03,-8.78
-"18",19,1,5700382094080,"<c4>ngla <f8>ko datterino","tomato","label",43,1,"vegetables",61,-18,-29.5,"labeling",5.03,-8.78
-"19",20,1,5700382338535,"<d8>ko Spinat 200 gr","spinage","label",77,1,"vegetables",88,-11,-12.5,"labeling",5.03,-8.78
-"20",21,1,5700382391622,"Spidsk<e5>l","cale","label",137,1,"vegetables",40,97,242.5,"labeling",5.03,-8.78
-"21",22,1,5700382516469,"Courgette","squash","label",89,1,"vegetables",62,27,43.5,"labeling",5.03,-8.78
-"22",23,1,5700382724581,"Broccoli","broccoli","label",102,1,"vegetables",242,-140,-57.9,"labeling",5.03,-8.78
-"23",24,1,5700382729920,"X-tra Kartofler 2 kg","potato","label",43,1,"vegetables",58,-15,-25.9,"labeling",5.03,-8.78
-"24",25,1,5700382739325,"<d8>KO <c4>M KART 1 KG","potato","label",150,1,"vegetables",74,76,102.7,"labeling",5.03,-8.78
-"25",26,1,5700382788019,"<d8>KO <c4>NGLA. <c6>BLE Stor","apples","label",34,1,"fruit",19,15,78.9,"labeling",5.03,-8.78
-"26",27,1,5700382801596,"Blommer","plums","label",53,1,"fruit",48,5,10.4,"labeling",5.03,-8.78
-"27",28,1,5700382815340,"<d8>ko 365 Guler<f8>dder 1","carrots","label",52,1,"vegetables",NA,NA,NA,"labeling",5.03,-8.78
-"28",29,1,5700382948277,"Guler<f8>dder h<e5>ndsort.","carrots","label",20,1,"vegetables",62,-42,-67.7,"labeling",5.03,-8.78
-"29",30,1,5700383052218,"Cocktail tomater","tomato","label",5,1,"vegetables",4,1,25,"labeling",5.03,-8.78
-"30",31,1,5700383201715,"<d8>ko S<f8>ris Kart 750 g","potato","label",30,1,"vegetables",14,16,114.3,"labeling",5.03,-8.78
-"31",32,1,5700383591045,"<d8>ko Courgetter","squash","label",47,1,"vegetables",84,-37,-44,"labeling",5.03,-8.78
-"32",33,1,5700383878061,"San Marzanotomat","tomato","label",52,1,"vegetables",119,-67,-56.3,"labeling",5.03,-8.78
-"33",34,1,5700384125287,"<d8>KO <c4>NGLAMARK HVEDEMEL DK 1 KG","flour","label",15,1,"bread/flour",13,2,15.4,"labeling",5.03,-8.78
-"34",35,1,5700384380556,"<c4>M <d8>ko Blommetomater","tomato","label",32,1,"vegetables",39,-7,-17.9,"labeling",5.03,-8.78
-"35",36,1,5700384882302,"SF Mix tomater","tomato","label",34,1,"vegetables",30,4,13.3,"labeling",5.03,-8.78
-"36",37,1,5700384899577,"R<d8>DK<c5>L 1000-2000 GR","cale","label",5,1,"vegetables",NA,NA,NA,"labeling",5.03,-8.78
-"37",38,1,5700384984211,"GULER<d8>DDER 1,5 KG","carrots","label",55,1,"vegetables",42,13,31,"labeling",5.03,-8.78
-"38",39,1,5701677001257,"CHAMPIGNON 250 gr.","mushrooms","label",29,1,"vegetables",38,-9,-23.7,"labeling",5.03,-8.78
-"39",40,1,5750006300721,"Kart Vildmose 1,5 kg","potato","label",43,1,"vegetables",28,15,53.6,"labeling",5.03,-8.78
-"40",41,1,5750006304415,"SF Kart Asparges 1 k","potato","label",12,1,"vegetables",16,-4,-25,"labeling",5.03,-8.78
-"41",42,1,5750006321023,"<c4>NGLA P<c6>RER 500gr","pear","label",12,1,"fruit",10,2,20,"labeling",5.03,-8.78
-"42",43,1,5750006323393,"<d8>KO <c4>M Guler<f8>dder 1","carrots","label",61,1,"vegetables",109,-48,-44,"labeling",5.03,-8.78
-"43",44,1,5750006326691,"<c4>ngla Broccoli","broccoli","label",54,1,"vegetables",40,14,35,"labeling",5.03,-8.78
-"44",45,1,5750006327728,"<c4>ngla R<f8>dbeder 1 kg","beats","label",14,1,"vegetables",14,0,0,"labeling",5.03,-8.78
-"45",46,1,5750006329289,"Blomk<e5>l","cale","label",108,1,"vegetables",122,-14,-11.5,"labeling",5.03,-8.78
-"46",47,1,5750006331084,"Kartofler Bage 1,5 k","potato","label",28,1,"vegetables",22,6,27.3,"labeling",5.03,-8.78
-"47",48,1,5750006339622,"Kartofler Mos 2 kg","potato","label",21,1,"vegetables",19,2,10.5,"labeling",5.03,-8.78
-"48",49,1,5750006343506,"<c4>ngla <d8>ko tomater","tomato","label",17,1,"vegetables",19,-2,-10.5,"labeling",5.03,-8.78
-"49",50,1,5750006344084,"Angla R<f8>dl<f8>g 750 gr","onion","label",29,1,"vegetables",30,-1,-3.3,"labeling",5.03,-8.78
-"50",51,1,5750006344138,"K&A Classic tomater","tomato","label",15,1,"vegetables",38,-23,-60.5,"labeling",5.03,-8.78
-"51",52,1,5750006361050,"P<c6>RER 1KG","pear","label",48,1,"fruit",38,10,26.3,"labeling",5.03,-8.78
-"52",53,1,5750006363634,"<c4>nglamark <e6>bler 1 kg","apples","label",33,1,"fruit",88,-55,-62.5,"labeling",5.03,-8.78
-"53",54,1,5756605000390,"Kart Alexandra 850 g","potato","label",6,1,"vegetables",6,0,0,"labeling",5.03,-8.78
-"54",55,1,7340011321194,"COOP MINERALVAND 50C","water","label",324,1,"water",382,-58,-15.2,"labeling",5.03,-8.78
-"55",56,1,7340011340058,"L<d8>SE MAJS X-TRA 300/285 G","corn","label",33,1,"canned",34,-1,-2.9,"labeling",5.03,-8.78
-"56",57,1,7340011351085,"COOP L<d8>SE MAJS 3-PAK 594/504 G","corn","label",15,1,"canned",10,5,50,"labeling",5.03,-8.78
-"57",58,1,7340011364368,"COOP MINERALVAND 2L","water","label",58,1,"water",55,3,5.5,"labeling",5.03,-8.78
-"58",59,1,7340011464587,"X-TRA R<d8>DBEDER I SKIVER 670/430 G","beats","label",13,1,"vegetables",16,-3,-18.8,"labeling",5.03,-8.78
-"59",60,1,7340011481782,"<d8>ko <c4>M HK Spinat","spinage","label",16,1,"vegetables",18,-2,-11.1,"labeling",5.03,-8.78
-"60",61,1,7340011487906,"<d8>KO <c4>NGLAMARK KIK<c6>RTER 380/230 G","chickpea","label",64,1,"canned",62,2,3.2,"labeling",5.03,-8.78
-"61",62,1,7340191112582,"<d8>ko <c4>M Broccoli 400g","broccoli","label",16,1,"vegetables",16,0,0,"labeling",5.03,-8.78
-"62",63,1,5700382516469,"Courgette","squash","nudge",149,2,"vegetables",62,87,140.3,"nudging",18.29,7.14
-"63",64,1,5700383878061,"San Marzanotomat","tomato","nudge",58,2,"vegetables",119,-61,-51.3,"nudging",18.29,7.14
-"64",65,1,5750006326691,"<c4>ngla Broccoli","broccoli","nudge",93,2,"vegetables",40,53,132.5,"nudging",18.29,7.14
-"65",66,1,7340011481782,"<d8>ko <c4>M HK Spinat","spinage","nudge",8,2,"vegetables",18,-10,-55.6,"nudging",18.29,7.14
-"66",67,1,7340011487906,"<d8>KO <c4>NGLAMARK KIK<c6>RTER 380/230 G","chickpea","nudge",49,2,"canned",62,-13,-21,"nudging",18.29,7.14
-"67",68,1,7340191112582,"<d8>ko <c4>M Broccoli 400g","broccoli","nudge",10,2,"vegetables",16,-6,-37.5,"nudging",18.29,7.14
-"68",69,1,7340191112711,"Coop HK spinat 1kg","spinage","nudge",10,2,"vegetables",10,0,0,"nudging",18.29,7.14
-"69",70,2,4000339697908,"PHILADELPHIA NATUREL","j","inspiration",18,3,"cheese",21,-3,NA,"inspiration",6.2,4.78
-"70",71,2,5700380203767,"<d8>KO Chili l<f8>se R<f8>de","j","inspiration",142,3,"vegetable",101,41,NA,"inspiration",6.2,4.78
-"71",72,2,5700381737605,"<d8>KO Citroner l<f8>se","j","inspiration",60,3,"vegetable",111,-51,NA,"inspiration",6.2,4.78
-"72",73,2,5700381760627,"<d8>KO <c4>M KORIANDER AFS","j","inspiration",17,3,"herbes",24,-7,NA,"inspiration",6.2,4.78
-"73",74,2,5700382338535,"<d8>ko Spinat 200 gr","j","inspiration",89,3,"vegetable",80,9,NA,"inspiration",6.2,4.78
-"74",75,2,5700382599486,"<c4>ngla <f8>ko ingef<e6>r","j","inspiration",50,3,"herbes",43,7,NA,"inspiration",6.2,4.78
-"75",76,2,5700382650019,"COOP SESAMFR<d8> 150 G","j","inspiration",8,3,"boullion/seed",10,-2,NA,"inspiration",6.2,4.78
-"76",77,2,5700382939183,"<d8>KO <c4>M TIMIAN AFSK","j","inspiration",14,3,"herbes",13,1,NA,"inspiration",6.2,4.78
-"77",78,2,5700383118402,"<c4>ngla sm<e5> spr<f8>de gul","j","inspiration",263,3,"vegetable",153,110,NA,"inspiration",6.2,4.78
-"78",79,2,5700383270889,"<c4>ngla Snackpeber","j","inspiration",49,3,"vegetable",40,9,NA,"inspiration",6.2,4.78
-"79",80,2,5700383696054,"<d8>ko <c4>M Champ i skive","j","inspiration",32,3,"vegetable",45,-13,NA,"inspiration",6.2,4.78
-"80",81,2,5700383908812,"Portobello 300 gr","j","inspiration",9,3,"vegetable",17,-8,NA,"inspiration",6.2,4.78
-"81",82,2,5700384318719,"Hvidl<f8>g 200 gr","j","inspiration",79,3,"vegetable",56,23,NA,"inspiration",6.2,4.78
-"82",83,2,5700384581724,"<d8>KO PERLEBYG <c2>NGLEMARK 500 G","j","inspiration",0,3,"pasta_stuff",1,-1,NA,"inspiration",6.2,4.78
-"83",84,2,5750006343148,"<d8>KO <c4>M bladselleri","j","inspiration",56,3,"vegetable",54,2,NA,"inspiration",6.2,4.78
-"84",85,2,5750006345555,"<d8>KO <c4>M l<f8>g 1 Kg","j","inspiration",102,3,"vegetable",89,13,NA,"inspiration",6.2,4.78
-"85",86,2,7340011315179,"<d8>KO SPAGHETTI FK <c4>NGLAM","j","inspiration",5,3,"pasta_stuff",10,-5,NA,"inspiration",6.2,4.78
-"86",87,2,7340011476054,"COOP HAKKEDE TOMATER 400 G","j","inspiration",40,3,"canned",26,14,NA,"inspiration",6.2,4.78
-"87",88,2,7340011487906,"<d8>KO <c4>NGLAMARK KIK<c6>RTER 380/230 G","j","inspiration",21,3,"canned",66,-45,NA,"inspiration",6.2,4.78
-"88",89,2,7340011488064,"<d8>KO <c4>NGLAMARK KNUST CHILI 23 G","j","inspiration",8,3,"spices",9,-1,NA,"inspiration",6.2,4.78
-"89",90,2,7340191101029,"COOP SPIDSKOMMEN 40 G","j","inspiration",13,3,"spices",4,9,NA,"inspiration",6.2,4.78
-"90",91,2,8001868007509,"PECORINO ROMANO 160G","j","inspiration",9,3,"cheese",6,3,NA,"inspiration",6.2,4.78
-"91",92,2,8015185002161,"QUEEN GR<d8>NTSAGS BOUILLON 200 G","j","inspiration",13,3,"boullion/seed",8,5,NA,"inspiration",6.2,4.78
-"92",93,2,NA,NA,NA,"inspiration",NA,NA,NA,21,-1,NA,"convenience_bags",6.21,8.35
-"93",94,2,NA,NA,NA,"inspiration",NA,NA,NA,101,48,NA,"convenience_bags",6.21,8.35
-"94",95,2,NA,NA,NA,"inspiration",NA,NA,NA,111,-48,NA,"convenience_bags",6.21,8.35
-"95",96,2,NA,NA,NA,"inspiration",NA,NA,NA,24,-4,NA,"convenience_bags",6.21,8.35
-"96",97,2,NA,NA,NA,"inspiration",NA,NA,NA,80,11,NA,"convenience_bags",6.21,8.35
-"97",98,2,NA,NA,NA,"inspiration",NA,NA,NA,43,10,NA,"convenience_bags",6.21,8.35
-"98",99,2,NA,NA,NA,"inspiration",NA,NA,NA,10,1,NA,"convenience_bags",6.21,8.35
-"99",100,2,NA,NA,NA,"inspiration",NA,NA,NA,13,3,NA,"convenience_bags",6.21,8.35
-"100",101,2,NA,NA,NA,"inspiration",NA,NA,NA,153,112,NA,"convenience_bags",6.21,8.35
-"101",102,2,NA,NA,NA,"inspiration",NA,NA,NA,40,11,NA,"convenience_bags",6.21,8.35
-"102",103,2,NA,NA,NA,"inspiration",NA,NA,NA,45,-11,NA,"convenience_bags",6.21,8.35
-"103",104,2,NA,NA,NA,"inspiration",NA,NA,NA,17,-1,NA,"convenience_bags",6.21,8.35
-"104",105,2,NA,NA,NA,"inspiration",NA,NA,NA,56,25,NA,"convenience_bags",6.21,8.35
-"105",106,2,NA,NA,NA,"inspiration",NA,NA,NA,1,6,NA,"convenience_bags",6.21,8.35
-"106",107,2,NA,NA,NA,"inspiration",NA,NA,NA,54,5,NA,"convenience_bags",6.21,8.35
-"107",108,2,NA,NA,NA,"inspiration",NA,NA,NA,89,15,NA,"convenience_bags",6.21,8.35
-"108",109,2,NA,NA,NA,"inspiration",NA,NA,NA,10,0,NA,"convenience_bags",6.21,8.35
-"109",110,2,NA,NA,NA,"inspiration",NA,NA,NA,26,16,NA,"convenience_bags",6.21,8.35
-"110",111,2,NA,NA,NA,"inspiration",NA,NA,NA,66,-43,NA,"convenience_bags",6.21,8.35
-"111",112,2,NA,NA,NA,"inspiration",NA,NA,NA,9,1,NA,"convenience_bags",6.21,8.35
-"112",113,2,NA,NA,NA,"inspiration",NA,NA,NA,4,16,NA,"convenience_bags",6.21,8.35
-"113",114,2,NA,NA,NA,"inspiration",NA,NA,NA,6,8,NA,"convenience_bags",6.21,8.35
-"114",115,2,NA,NA,NA,"inspiration",NA,NA,NA,8,12,NA,"convenience_bags",6.21,8.35
+"","X1","X1_1","uge","vare","X3","prod_cat","intervention","oms.x","week","vare_grp","oms.y","diff","diff_perc","int_type","se","mean","overall_inc"
+"1",1,1,1,57095370,"KILDEV<c6>LD 50CL","water","label",46,1,"water",37,9,24.3,"labeling",5.03,-8.78,"-0.27 %"
+"2",2,2,1,5700380222096,"R<f8>dbeder 1,5 kg.","beats","label",5,1,"vegetables",7,-2,-28.6,"labeling",5.03,-8.78,"-0.27 %"
+"3",3,3,1,5700380268926,"<d8>KO <c4>M SPIDSK<c5>L","cale","label",39,1,"vegetables",199,-160,-80.4,"labeling",5.03,-8.78,"-0.27 %"
+"4",4,4,1,5700380269572,"L<f8>g 1 kg 40-60 mm","onion","label",87,1,"vegetables",83,4,4.8,"labeling",5.03,-8.78,"-0.27 %"
+"5",5,5,1,5700380394816,"Kart Lammefjord 1,5","potato","label",28,1,"vegetables",52,-24,-46.2,"labeling",5.03,-8.78,"-0.27 %"
+"6",6,6,1,5700380806210,"Knoldselleri","celeriac","label",15,1,"vegetables",16,-1,-6.2,"labeling",5.03,-8.78,"-0.27 %"
+"7",7,7,1,5700380988244,"Hvidk<e5>l 1000-1800 gr","cale","label",9,1,"vegetables",NA,NA,NA,"labeling",5.03,-8.78,"-0.27 %"
+"8",8,8,1,5700381206774,"<d8>ko <c4>M porrer 1 stk","leek","label",70,1,"vegetables",84,-14,-16.7,"labeling",5.03,-8.78,"-0.27 %"
+"9",9,9,1,5700381232315,"<d8>KO <c4>M KART SM<c5>","potato","label",43,1,"vegetables",34,9,26.5,"labeling",5.03,-8.78,"-0.27 %"
+"10",10,10,1,5700381563587,"COOP DANSKVAND 2L","water","label",60,1,"water",66,-6,-9.1,"labeling",5.03,-8.78,"-0.27 %"
+"11",11,11,1,5700381660255,"<c4>ngla <f8>ko gr<f8>nk<e5>l","cale","label",14,1,"vegetables",10,4,40,"labeling",5.03,-8.78,"-0.27 %"
+"12",12,13,1,5700381757511,"<c4>ngla <f8>ko Blomk<e5>l","cale","label",5,1,"vegetables",12,-7,-58.3,"labeling",5.03,-8.78,"-0.27 %"
+"13",13,14,1,5700381768852,"SF HINDB<c6>R 170 g.","berries","label",54,1,"fruit",68,-14,-20.6,"labeling",5.03,-8.78,"-0.27 %"
+"14",14,15,1,5700381779827,"Porrer","leek","label",88,1,"vegetables",82,6,7.3,"labeling",5.03,-8.78,"-0.27 %"
+"15",15,16,1,5700381884897,"<d8>KO <c4>NGLAMARK HVEDEMEL DK 2 KG","flour","label",31,1,"bread/flour",19,12,63.2,"labeling",5.03,-8.78,"-0.27 %"
+"16",16,17,1,5700382004812,"<d8>ko <c4>M Portobello","mushrooms","label",9,1,"vegetables",12,-3,-25,"labeling",5.03,-8.78,"-0.27 %"
+"17",17,18,1,5700382039487,"P<e6>rer, store 6stk.DK","pear","label",29,1,"fruit",109,-80,-73.4,"labeling",5.03,-8.78,"-0.27 %"
+"18",18,19,1,5700382094080,"<c4>ngla <f8>ko datterino","tomato","label",43,1,"vegetables",61,-18,-29.5,"labeling",5.03,-8.78,"-0.27 %"
+"19",19,20,1,5700382338535,"<d8>ko Spinat 200 gr","spinage","label",77,1,"vegetables",88,-11,-12.5,"labeling",5.03,-8.78,"-0.27 %"
+"20",20,21,1,5700382391622,"Spidsk<e5>l","cale","label",137,1,"vegetables",40,97,242.5,"labeling",5.03,-8.78,"-0.27 %"
+"21",21,22,1,5700382516469,"Courgette","squash","label",89,1,"vegetables",62,27,43.5,"labeling",5.03,-8.78,"-0.27 %"
+"22",22,23,1,5700382724581,"Broccoli","broccoli","label",102,1,"vegetables",242,-140,-57.9,"labeling",5.03,-8.78,"-0.27 %"
+"23",23,24,1,5700382729920,"X-tra Kartofler 2 kg","potato","label",43,1,"vegetables",58,-15,-25.9,"labeling",5.03,-8.78,"-0.27 %"
+"24",24,25,1,5700382739325,"<d8>KO <c4>M KART 1 KG","potato","label",150,1,"vegetables",74,76,102.7,"labeling",5.03,-8.78,"-0.27 %"
+"25",25,26,1,5700382788019,"<d8>KO <c4>NGLA. <c6>BLE Stor","apples","label",34,1,"fruit",19,15,78.9,"labeling",5.03,-8.78,"-0.27 %"
+"26",26,27,1,5700382801596,"Blommer","plums","label",53,1,"fruit",48,5,10.4,"labeling",5.03,-8.78,"-0.27 %"
+"27",27,28,1,5700382815340,"<d8>ko 365 Guler<f8>dder 1","carrots","label",52,1,"vegetables",NA,NA,NA,"labeling",5.03,-8.78,"-0.27 %"
+"28",28,29,1,5700382948277,"Guler<f8>dder h<e5>ndsort.","carrots","label",20,1,"vegetables",62,-42,-67.7,"labeling",5.03,-8.78,"-0.27 %"
+"29",29,30,1,5700383052218,"Cocktail tomater","tomato","label",5,1,"vegetables",4,1,25,"labeling",5.03,-8.78,"-0.27 %"
+"30",30,31,1,5700383201715,"<d8>ko S<f8>ris Kart 750 g","potato","label",30,1,"vegetables",14,16,114.3,"labeling",5.03,-8.78,"-0.27 %"
+"31",31,32,1,5700383591045,"<d8>ko Courgetter","squash","label",47,1,"vegetables",84,-37,-44,"labeling",5.03,-8.78,"-0.27 %"
+"32",32,33,1,5700383878061,"San Marzanotomat","tomato","label",52,1,"vegetables",119,-67,-56.3,"labeling",5.03,-8.78,"-0.27 %"
+"33",33,34,1,5700384125287,"<d8>KO <c4>NGLAMARK HVEDEMEL DK 1 KG","flour","label",15,1,"bread/flour",13,2,15.4,"labeling",5.03,-8.78,"-0.27 %"
+"34",34,35,1,5700384380556,"<c4>M <d8>ko Blommetomater","tomato","label",32,1,"vegetables",39,-7,-17.9,"labeling",5.03,-8.78,"-0.27 %"
+"35",35,36,1,5700384882302,"SF Mix tomater","tomato","label",34,1,"vegetables",30,4,13.3,"labeling",5.03,-8.78,"-0.27 %"
+"36",36,37,1,5700384899577,"R<d8>DK<c5>L 1000-2000 GR","cale","label",5,1,"vegetables",NA,NA,NA,"labeling",5.03,-8.78,"-0.27 %"
+"37",37,38,1,5700384984211,"GULER<d8>DDER 1,5 KG","carrots","label",55,1,"vegetables",42,13,31,"labeling",5.03,-8.78,"-0.27 %"
+"38",38,39,1,5701677001257,"CHAMPIGNON 250 gr.","mushrooms","label",29,1,"vegetables",38,-9,-23.7,"labeling",5.03,-8.78,"-0.27 %"
+"39",39,40,1,5750006300721,"Kart Vildmose 1,5 kg","potato","label",43,1,"vegetables",28,15,53.6,"labeling",5.03,-8.78,"-0.27 %"
+"40",40,41,1,5750006304415,"SF Kart Asparges 1 k","potato","label",12,1,"vegetables",16,-4,-25,"labeling",5.03,-8.78,"-0.27 %"
+"41",41,42,1,5750006321023,"<c4>NGLA P<c6>RER 500gr","pear","label",12,1,"fruit",10,2,20,"labeling",5.03,-8.78,"-0.27 %"
+"42",42,43,1,5750006323393,"<d8>KO <c4>M Guler<f8>dder 1","carrots","label",61,1,"vegetables",109,-48,-44,"labeling",5.03,-8.78,"-0.27 %"
+"43",43,44,1,5750006326691,"<c4>ngla Broccoli","broccoli","label",54,1,"vegetables",40,14,35,"labeling",5.03,-8.78,"-0.27 %"
+"44",44,45,1,5750006327728,"<c4>ngla R<f8>dbeder 1 kg","beats","label",14,1,"vegetables",14,0,0,"labeling",5.03,-8.78,"-0.27 %"
+"45",45,46,1,5750006329289,"Blomk<e5>l","cale","label",108,1,"vegetables",122,-14,-11.5,"labeling",5.03,-8.78,"-0.27 %"
+"46",46,47,1,5750006331084,"Kartofler Bage 1,5 k","potato","label",28,1,"vegetables",22,6,27.3,"labeling",5.03,-8.78,"-0.27 %"
+"47",47,48,1,5750006339622,"Kartofler Mos 2 kg","potato","label",21,1,"vegetables",19,2,10.5,"labeling",5.03,-8.78,"-0.27 %"
+"48",48,49,1,5750006343506,"<c4>ngla <d8>ko tomater","tomato","label",17,1,"vegetables",19,-2,-10.5,"labeling",5.03,-8.78,"-0.27 %"
+"49",49,50,1,5750006344084,"Angla R<f8>dl<f8>g 750 gr","onion","label",29,1,"vegetables",30,-1,-3.3,"labeling",5.03,-8.78,"-0.27 %"
+"50",50,51,1,5750006344138,"K&A Classic tomater","tomato","label",15,1,"vegetables",38,-23,-60.5,"labeling",5.03,-8.78,"-0.27 %"
+"51",51,52,1,5750006361050,"P<c6>RER 1KG","pear","label",48,1,"fruit",38,10,26.3,"labeling",5.03,-8.78,"-0.27 %"
+"52",52,53,1,5750006363634,"<c4>nglamark <e6>bler 1 kg","apples","label",33,1,"fruit",88,-55,-62.5,"labeling",5.03,-8.78,"-0.27 %"
+"53",53,54,1,5756605000390,"Kart Alexandra 850 g","potato","label",6,1,"vegetables",6,0,0,"labeling",5.03,-8.78,"-0.27 %"
+"54",54,55,1,7340011321194,"COOP MINERALVAND 50C","water","label",324,1,"water",382,-58,-15.2,"labeling",5.03,-8.78,"-0.27 %"
+"55",55,56,1,7340011340058,"L<d8>SE MAJS X-TRA 300/285 G","corn","label",33,1,"canned",34,-1,-2.9,"labeling",5.03,-8.78,"-0.27 %"
+"56",56,57,1,7340011351085,"COOP L<d8>SE MAJS 3-PAK 594/504 G","corn","label",15,1,"canned",10,5,50,"labeling",5.03,-8.78,"-0.27 %"
+"57",57,58,1,7340011364368,"COOP MINERALVAND 2L","water","label",58,1,"water",55,3,5.5,"labeling",5.03,-8.78,"-0.27 %"
+"58",58,59,1,7340011464587,"X-TRA R<d8>DBEDER I SKIVER 670/430 G","beats","label",13,1,"vegetables",16,-3,-18.8,"labeling",5.03,-8.78,"-0.27 %"
+"59",59,60,1,7340011481782,"<d8>ko <c4>M HK Spinat","spinage","label",16,1,"vegetables",18,-2,-11.1,"labeling",5.03,-8.78,"-0.27 %"
+"60",60,61,1,7340011487906,"<d8>KO <c4>NGLAMARK KIK<c6>RTER 380/230 G","chickpea","label",64,1,"canned",62,2,3.2,"labeling",5.03,-8.78,"-0.27 %"
+"61",61,62,1,7340191112582,"<d8>ko <c4>M Broccoli 400g","broccoli","label",16,1,"vegetables",16,0,0,"labeling",5.03,-8.78,"-0.27 %"
+"62",62,63,1,5700382516469,"Courgette","squash","nudge",149,2,"vegetables",62,87,140.3,"nudging",18.29,7.14,"2.18%"
+"63",63,64,1,5700383878061,"San Marzanotomat","tomato","nudge",58,2,"vegetables",119,-61,-51.3,"nudging",18.29,7.14,"2.18%"
+"64",64,65,1,5750006326691,"<c4>ngla Broccoli","broccoli","nudge",93,2,"vegetables",40,53,132.5,"nudging",18.29,7.14,"2.18%"
+"65",65,66,1,7340011481782,"<d8>ko <c4>M HK Spinat","spinage","nudge",8,2,"vegetables",18,-10,-55.6,"nudging",18.29,7.14,"2.18%"
+"66",66,67,1,7340011487906,"<d8>KO <c4>NGLAMARK KIK<c6>RTER 380/230 G","chickpea","nudge",49,2,"canned",62,-13,-21,"nudging",18.29,7.14,"2.18%"
+"67",67,68,1,7340191112582,"<d8>ko <c4>M Broccoli 400g","broccoli","nudge",10,2,"vegetables",16,-6,-37.5,"nudging",18.29,7.14,"2.18%"
+"68",68,69,1,7340191112711,"Coop HK spinat 1kg","spinage","nudge",10,2,"vegetables",10,0,0,"nudging",18.29,7.14,"2.18%"
+"69",69,70,2,4000339697908,"PHILADELPHIA NATUREL","j","inspiration",20,3,"cheese",21,-1,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"70",70,71,2,5700380203767,"<d8>KO Chili l<f8>se R<f8>de","j","inspiration",149,3,"vegetable",101,48,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"71",71,72,2,5700381737605,"<d8>KO Citroner l<f8>se","j","inspiration",63,3,"vegetable",111,-48,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"72",72,73,2,5700381760627,"<d8>KO <c4>M KORIANDER AFS","j","inspiration",20,3,"herbes",24,-4,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"73",73,74,2,5700382338535,"<d8>ko Spinat 200 gr","j","inspiration",91,3,"vegetable",80,11,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"74",74,75,2,5700382599486,"<c4>ngla <f8>ko ingef<e6>r","j","inspiration",53,3,"herbes",43,10,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"75",75,76,2,5700382650019,"COOP SESAMFR<d8> 150 G","j","inspiration",11,3,"boullion/seed",10,1,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"76",76,77,2,5700382939183,"<d8>KO <c4>M TIMIAN AFSK","j","inspiration",16,3,"herbes",13,3,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"77",77,78,2,5700383118402,"<c4>ngla sm<e5> spr<f8>de gul","j","inspiration",265,3,"vegetable",153,112,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"78",78,79,2,5700383270889,"<c4>ngla Snackpeber","j","inspiration",51,3,"vegetable",40,11,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"79",79,80,2,5700383696054,"<d8>ko <c4>M Champ i skive","j","inspiration",34,3,"vegetable",45,-11,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"80",80,81,2,5700383908812,"Portobello 300 gr","j","inspiration",16,3,"vegetable",17,-1,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"81",81,82,2,5700384318719,"Hvidl<f8>g 200 gr","j","inspiration",81,3,"vegetable",56,25,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"82",82,83,2,5700384581724,"<d8>KO PERLEBYG <c2>NGLEMARK 500 G","j","inspiration",7,3,"pasta_stuff",1,6,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"83",83,84,2,5750006343148,"<d8>KO <c4>M bladselleri","j","inspiration",59,3,"vegetable",54,5,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"84",84,85,2,5750006345555,"<d8>KO <c4>M l<f8>g 1 Kg","j","inspiration",104,3,"vegetable",89,15,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"85",85,86,2,7340011315179,"<d8>KO SPAGHETTI FK <c4>NGLAM","j","inspiration",10,3,"pasta_stuff",10,0,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"86",86,87,2,7340011476054,"COOP HAKKEDE TOMATER 400 G","j","inspiration",42,3,"canned",26,16,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"87",87,88,2,7340011487906,"<d8>KO <c4>NGLAMARK KIK<c6>RTER 380/230 G","j","inspiration",23,3,"canned",66,-43,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"88",88,89,2,7340011488064,"<d8>KO <c4>NGLAMARK KNUST CHILI 23 G","j","inspiration",10,3,"spices",9,1,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"89",89,90,2,7340191101029,"COOP SPIDSKOMMEN 40 G","j","inspiration",20,3,"spices",4,16,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"90",90,91,2,8001868007509,"PECORINO ROMANO 160G","j","inspiration",14,3,"cheese",6,8,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
+"91",91,92,2,8015185002161,"QUEEN GR<d8>NTSAGS BOUILLON 200 G","j","inspiration",20,3,"boullion/seed",8,12,NA,"Store + Convenience bags",6.21,8.35,"0.85 %"
