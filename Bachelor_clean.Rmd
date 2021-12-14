@@ -25,6 +25,8 @@ library(sjmisc)
 library(effects)
 library(sjstats) 
 library(ggthemes)
+library(patchwork)
+library(plotrix)
 ```
 
 ```{r}
@@ -222,11 +224,62 @@ df_con %>%  wilcox_effsize(diff ~ 1, mu = 0, alternative = "greater") # medium e
 
 
 bxp_w_3
+
+
+# Looking at inspiration without products out in the store 
+
+df_only_con <- df_w_con
+
+df_only_con$mean <- mean(df_only_con$diff, na.rm = T)
+df_only_con$se <- std.error(df_only_con$diff, na.rm = T)
+
+df_only_con$diff <- NULL # deleting original diff column
+
+df_only_con$diff <- df_only_con$oms_con
+
+
+
+sum(df_only_con$oms.y, na.rm = T) # 987
+(3.57/987)*100 # 0.36% change
+
+df_only_con$overall_inc <- as.character(df_only_con$overall_inc)
+df_only_con$overall_inc <- "0.36 %"
+
+df_only_con$mean <- round(df_only_con$mean, digits = 2)
+df_only_con$se <- round(df_only_con$se, digits = 2)
+
+
+
+df_only_con %>% 
+  get_summary_stats(diff, type = "median_iqr")
+
+
+# Normality
+ggqqplot(df_only_con, x = "diff")
+
+df_only_con %>% shapiro_test(diff) # Assuming no normal distribution
+
+
+gghistogram(df_only_con, x = "diff", y = "..density..", 
+            fill = "steelblue",bins = 10, add_density = TRUE)
+
+
+# Using one-tailed one-sample  Wilcoxon test 
+wilcox.test(df_only_con$diff, mu = 0, alternative = "greater") #significant
+
+
+
+# Effect size 
+df_only_con %>%  wilcox_effsize(diff ~ 1, mu = 0, alternative = "greater") # large effect size
+
+
+
 ```
+
+
 ```{r}
 # Boxplot collection for H1, H2, H3 and H4
 
-library(patchwork)
 
 (bxp_w_1_out /bxp_w_2 ) | (bxp_w_3/bxp_lab_nug)
 
@@ -237,6 +290,7 @@ library(patchwork)
 
 Hypothesis 4
 ```{r}
+
 
 df_lab_nug <- read_csv("df_lab_nug.csv")
 
@@ -327,6 +381,49 @@ sjPlot::tab_model(m1,
                   dv.labels= "Effect of Intervention on Climate-friendly Products - Measured as Difference score")
 
 summary(m1)
+
+
+# Creating a model excluding products out in the store in the inspriation intervention
+
+df_explorative <- bind_rows(df_w_1_out, df_w_2, df_only_con)
+
+df_explorative$mean <- round(df_explorative$mean, digits = 2)
+df_explorative$se <- round(df_explorative$se, digits = 2)
+
+m2 <- lm(diff ~ intervention, data = df_explorative)
+
+
+summary(m2)
+
+
+
+explorative_plot <- df_explorative %>% 
+  ggplot(aes(intervention, mean, fill = intervention, na.rm = T)) +
+  geom_bar(stat = "summary")+
+  geom_errorbar(aes(ymin=mean-se, ymax=mean+se), width=.1,
+                position=position_dodge(.9))+
+  theme_solarized()+
+  geom_text(aes(label = paste("",overall_inc, ", (", mean,")"), vjust = -0.4), , colour = "black", position = position_dodge(.9) )+
+  labs(x = "Intervention", y = "Effect of interventions in % (absolute numbers)")+
+  ggtitle("A) Intervention Effect on Purchase of Climate-friendly Products")+
+  scale_fill_discrete(name = "Intervention Type")
+
+
+explorative_plot
+
+
+
+# Table of model summary for m2
+sjPlot::tab_model(m2, 
+                  show.re.var= TRUE, show.se = T,
+                  pred.labels =c("(Intercept)", "Labeling", "Nudging"),
+                  dv.labels= "Effect of Intervention on Climate-friendly Products - Measured as Difference score")
+
+# Plotting the beta values for m2
+sjPlot::plot_model(m2, 
+                   axis.labels=c("Nudging", "Labeling", "Intercept(Inspiration)"),
+                   show.values=T, show.p=T, show.intercept = T,
+                   title="Effect of Intervention on Climate-friendly Products - Measured in Difference score")
 ```
 
 
@@ -384,6 +481,57 @@ df$se <- round(df$se, digits = 2)
 
 
 
+
+```
+
+
+```{r}
+
+df_w_1_out <- read_csv("df_w_1_out.csv")
+df_w_2 <- read_csv("df_w_2.csv")
+df_w_3 <- read_csv("df_w_3.csv")
+df_w_con <- read_csv("df_con.csv")
+
+
+
+sum(df_w_1_out$oms.y, na.rm = T) # 3219
+(-8.78/3219)*100 # -0.27% change
+
+df_w_1_out$overall_inc <- as.character(df_w_1_out$overall_inc)
+df_w_1_out$overall_inc <- "-0.27 %"
+
+sum(df_w_2$oms.y) # 327
+(7.14/327)*100 # 2.18%
+
+df_w_2$overall_inc <- as.character(df_w_2$overall_inc)
+df_w_2$overall_inc <- "2.18%"
+
+sum(df_w_3$oms.y) # 987
+
+(8.35/987)*100 #0.85%
+
+df_w_3$overall_inc <- as.character(df_w_3$overall_inc)
+df_w_3$overall_inc <- "0.85 %"
+
+sum(df_w_con$oms.y) # 987
+(4.78/987)*100 # 0.48%
+
+df_w_con$overall_inc <- as.character(df_w_con$overall_inc)
+df_w_con$overall_inc <- "0.48 %"
+
+df_overall$overall_inc <- "J"
+
+df_overall[c(1:61), 17] <- df_w_1_out$overall_inc
+df_overall[c(62:68), 17] <- df_w_2$overall_inc
+df_overall[c(69:91), 17] <- df_w_3$overall_inc
+df_overall[c(92:114), 17] <- df_w_con$overall_inc
+
+
+```
+
+Visualizing 
+```{r}
+
 # Plot of the three interventions
 
 df_plot <- df_overall %>% 
@@ -392,18 +540,63 @@ df_plot <- df_overall %>%
   geom_errorbar(aes(ymin=mean-se, ymax=mean+se), width=.1,
                 position=position_dodge(.9))+
   theme_solarized()+
-  geom_text(aes(label = mean), vjust = 1.0, position = position_dodge(.9), colour = "black"
-  )+
-  labs(x = "Intervention", y = "Mean difference score")+
+  geom_text(aes(label = paste("",overall_inc, ", (", mean,")"), vjust = -0.4), , colour = "black", position = position_dodge(.9) )+
+  labs(x = "Intervention", y = "Effect of interventions in % (absolute numbers)")+
   ggtitle("A) Intervention Effect on Purchase of Climate-friendly Products")+
   scale_fill_discrete(name = "Intervention Type")
 
+
+
 df_plot
 
-df_plot + bxp_lab_nug
-
-
+df_plot+ bxp_lab_nug
 ```
 
+Explorative plot
+```{r}
 
+df_overall[c(69:91), 12] <- df_w_3$diff_con " Difference score for numbers entailing supermarket and bags"
+df_overall[c(69:91), 14] <- "Store + Convenience bags"
+df_overall[c(69:91), 16] <- mean(df_w_3$diff_con) # Mean
+df_overall[c(69:91), 15] <- std.error(df_w_3$diff_con) # Standard error
+
+df_overall$mean <- round(df_overall$mean, digits = 2)
+df_overall$se <- round(df_overall$se, digits = 2)
+
+
+sum(df_w_3$oms_con_total) # 1179
+(8.35/1179)*100 # 0.71%
+
+df_overall[c(69:91), 17] <- "0.71 %"
+
+
+df_overall[c(92:114), 12] <- df_w_con$oms_con
+df_overall[c(92:114), 14] <- "Convenience bags"
+df_overall[c(92:114), 16] <- mean(df_w_con$oms_con) # Mean
+df_overall[c(92:114), 15] <- std.error(df_w_con$oms_con) # Standard error
+
+df_overall$mean <- round(df_overall$mean, digits = 2)
+df_overall$se <- round(df_overall$se, digits = 2)
+
+sum(df_w_3$oms_con_total) # 1179
+(3.57/1179)*100 # 0.30%
+
+
+
+
+
+df_plot_1 <- df_overall %>% 
+  ggplot(aes(intervention, mean, fill = int_type, na.rm = T)) +
+  geom_bar(position = "dodge", stat = "summary")+
+  geom_errorbar(aes(ymin=mean-se, ymax=mean+se), width=.1,
+                position=position_dodge(.9))+
+  theme_solarized()+
+  geom_text(aes(label = paste("",overall_inc, ", (", mean,")"), vjust = -0.4), , colour = "black", position = position_dodge(.9) )+
+  labs(x = "Intervention", y = "Effect of interventions in % (absolute numbers)")+
+  ggtitle("A) Intervention Effect on Purchase of Climate-friendly Products")+
+  scale_fill_discrete(name = "Intervention Type")
+
+df_plot_1
+
+```
 
