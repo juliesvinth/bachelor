@@ -475,8 +475,8 @@ df_plot_1 <- df_overall %>%
   geom_errorbar(aes(ymin=mean-se, ymax=mean+se), width=.1,
                 position=position_dodge(.9))+
   theme_solarized()+
-  geom_text(aes(label = paste("",overall_inc, ", (", mean,")"), vjust = -0.4), , colour = "black", position = position_dodge(.9) )+
-  labs(x = "Intervention", y = "Effect of interventions in % (absolute numbers)")+
+  geom_text(aes(label = paste("",mean, ", (", overall_inc,")"), vjust = -0.4), , colour = "black", position = position_dodge(.9) )+
+  labs(x = "Intervention", y = "Effect of interventions (compared to baseline in %)")+
   ggtitle("A) Intervention Effect on Purchase of Climate-friendly Products")+
   scale_fill_discrete(name = "Intervention Type")
 
