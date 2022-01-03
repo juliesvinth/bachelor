@@ -1,0 +1,28 @@
+questionName,variableName,questionType,subType,questionText,choiceValue,choiceText
+s_1,s_1,Closed,Single,"Jeg kunne godt tænke mig at mine indkøb var mere klimavenlige ",,
+s_2,s_2,Closed,Single,"Jeg går op i at handle klimavenligt",,
+s_3,s_3,Closed,Single,"Jeg prioriterer lavere priser over det klimabevidste valg ",,
+s_4,s_4,Closed,Single,"Jeg er villig til at ændre mine indkøbsvaner, så de bliver mere klimavenlige ",,
+s_5,s_5,Closed,Single,"Der er så mange hensyn at tage i forhold til indkøb, så jeg prioriterer ikke klimaet  ",,
+s_6,s_6,Closed,Single,"Jeg føler mig godt oplyst om hvilke varer der er klimavenlige ",,
+s_7,s_7,Closed,Single,"Jeg opsøger tit information om klimaaftrykket på varernes mærkater ",,
+s_8,s_8,Closed,Single,"Jeg savner mærkater eller skilte, der fremhæver klimavenlige varer i supermarkedet ",,
+s_9,s_9,Closed,Single,"Jeg prioriterer at spise sæsonbestemte madvarer (fx frugt og grønt) ",,
+s_10,s_10,Closed,Single,"Jeg prioriterer at spise danske varer ",,
+s_11,s_11,Closed,Single,"Jeg går op i at indrette min kost, så den bliver mere klimavenlig ",,
+s_12,s_12,Closed,Single,"Jeg synes ikke, at udvalget af klimavenlige produkter er stort nok ",,
+s_13,s_13,Closed,Single,"Jeg mangler inspiration til mere klimavenlige alternativer og opskrifter ",,
+s_14,s_14,Closed,Single,"Jeg synes, at det er svært at ændre mine madvaner, så de bliver mere klimavenlige   ",,
+s_15,s_15,Closed,Single,"Jeg synes, at det er uoverskueligt at finde klimavenlige produkter i supermarkedet ",,
+s_16,s_16,Closed,Single,"Jeg prioriterer, at indkøb skal gå hurtigt, hvilket sommetider gør valget af varer mere tilfældig ",,
+s_17,s_17,Closed,Single,"Jeg bruger ofte ekstra tid på at finde klimavenlige alternativer ",,
+s_18,s_18,Closed,Single,"Jeg synes, at klimavenlige varer skal placeres mere tilgængeligt end ikke-klimavenlige varer i supermarkedet ",,
+email,email,Open,String,"E-mail",,
+statoverall,statoverall_1,Closed,Multiple,"Samlet status",1,"Ny"
+statoverall,statoverall_2,Closed,Multiple,"Samlet status",2,"Distribueret"
+statoverall,statoverall_3,Closed,Multiple,"Samlet status",3,"Nogen svar"
+statoverall,statoverall_4,Closed,Multiple,"Samlet status",4,"Gennemført"
+statoverall,statoverall_5,Closed,Multiple,"Samlet status",5,"Frafaldet"
+s_19,s_19,Closed,Single,"Hvor besvarer du dette spørgsmål henne?",,
+s_20,s_20,Closed,Single,"Hvilken grund er der til, at du ikke ønsker dette?",,
+s_21,s_21,Open,String,"Hvilken grund er der til, at du ikke ønsker dette? - Andet:",,
