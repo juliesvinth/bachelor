@@ -25,8 +25,8 @@ library(plyr)
 Load in data
 ```{r,warning=FALSE}
 
-spg <- read_delim("complete.csv", ";", 
-    escape_double = FALSE, trim_ws = TRUE)
+spg <- read_csv("complete.csv")
+View(spg)
 
 ```
 
